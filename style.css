@@ -9,39 +9,61 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     line-height: 1.6;
-    color: #333;
-    padding: 20px;
+    padding: 0;
 }
 
 .container {
+    display: flex;
     max-width: 1200px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     padding: 20px; 
+    justify-content: flex-end;
+    flex-wrap: wrap;
 }
 
 /* Header Styles */
 header {
-    background: #333;
+    background: #171313;
     color: #fff;
-    padding: 10px 0;
+    /* padding: 10px 0; */
     text-align: center;
 }
 
-header .logo {
+ 
+#header-logo {
+    color: #073238 !important;
+    display: flex;
+    margin-left: 20px;
     font-size: 24px;
     font-weight: bold;
-    text-transform: uppercase;
+    text-decoration: none;
+    
 }
 
-.hero-section{
-    flex-wrap: wrap;
+.header-content {
+    
+    /* margin-left: auto;
+    z-index: 9; */
 }
+
+
+
+
+
+
+
+
 
 
 /* Navigation */
 .navbar {
+    flex-direction: column;
+    max-width: 1600px;
+    padding-left: 50px;
+    padding-right: 50px;
+    align-items: flex-end;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     background-color: #444;
 }
 
@@ -58,11 +80,16 @@ header .logo {
     color: #fff;
     text-decoration: none;
     padding: 10px 20px;
-    display: block;
+    /* display: block; */
 }
 
 .navbar ul li a:hover {
     background-color: #555;
+}
+
+
+.hero-section{
+    flex-wrap: wrap;
 }
 
 
@@ -128,7 +155,7 @@ header .logo {
 }
 
 .btn-primary {
-    background-color: #03f;
+    background-color: #337ab7;
 }
 
 .btn-primary:hover {
