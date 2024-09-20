@@ -17,7 +17,7 @@ body {
     max-width: 1200px;
     /* margin: 0 auto; */
     padding: 20px; 
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
     flex-wrap: wrap;
 }
 
@@ -32,42 +32,34 @@ header {
  
 #header-logo {
     color: #073238 !important;
-    display: flex;
+    /* display: flex; */
     margin-left: 20px;
+    align-self: center;
     font-size: 24px;
     font-weight: bold;
     text-decoration: none;
     
 }
 
-.header-content {
+/* .header-content {
     
-    /* margin-left: auto;
-    z-index: 9; */
-}
-
-
-
-
-
-
-
-
-
+justify-content: center;
+} */
+ 
 
 /* Navigation */
 .navbar {
-    flex-direction: column;
-    max-width: 1600px;
+    flex-direction: row;
     padding-left: 50px;
     padding-right: 50px;
     align-items: flex-end;
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
     background-color: #444;
 }
 
 .navbar ul {
+     
     list-style: none;
     display: flex;
 }
