@@ -165,9 +165,10 @@
                 <div class="col-md-8">
                     <form class="contact-form">
                         <input type="text" name="name" placeholder="Your Name" class="form-control" required>
-                        <input type="email" name="email" placeholder="Your Email" class="form-control" required>
+                        <input type="email" id="emailInput" name="email" placeholder="Your Email" class="form-control"   required>
                         <textarea name="message" placeholder="Your Message" class="form-control" required></textarea>
                         <button type="submit" class="btn btn-dark">Send Message</button>
+                        <h2 id="error-message"></h2>
                     </form>
                 </div>
             </div>
@@ -197,10 +198,11 @@
                       
                         <a href="#"><i class="ri-linkedin-fill"></i></a>
                     </ul>
-                    <p class="copyright">&copy; 2024 LEADRESEARCHRISE. All Rights Reserved.</p>
+                    <!-- <p class="copyright">&copy; 2024 LEADRESEARCHRISE. All Rights Reserved.</p> -->
                 </div>
             </div>
         </div>
+      <div id="timeFooter">  <p>&copy; 2024  LEADRESEARCHRISE. All Rights Reserved. | <span id="time"></span></p> </div>
     </footer>
 
     <!-- JavaScript -->
