@@ -13,9 +13,9 @@ body {
 }
 /* Header Styles */
 #header {
-  
+   
     background-color: #f5f1f1;
-    color: #fff;
+    color: #ee8383;
 }
 
  .navbar {
@@ -25,6 +25,21 @@ body {
     
 }
 
+.gtranslate{
+    
+    margin: 0 0 0 10px;
+    display: inline-block;
+    vertical-align: top;
+    background: #0d7eca;
+    padding: 10px 10px 20px 10px;
+    border-radius: 0 0 50px 50px;
+}
+
+.widget_gtranslate a {
+    margin-right: 10px;
+    cursor: pointer;
+    position: relative;
+}
 .container {
     justify-content: space-between;
     width: 100%;
@@ -57,11 +72,11 @@ body {
     text-decoration: none;
     display: flex;
    align-items: stretch;
-   
+}
     /* justify-content: flex-end; */
     /* display: flex;
     margin-left: auto; */
-}
+
  
  
 
@@ -115,7 +130,7 @@ padding: 2px;
 }
 
 a {
-    color: #337ab7;
+    color: #337ab7 ;
     font-size: 13px;
     font-weight: bold;
     text-decoration: none;
@@ -332,8 +347,8 @@ li {
 
  a { padding: 10px; 
     gap: 10px;
-    border-radius: 50%;
-    background-color: #23272b;
+    border-radius: 20%;
+   font-weight: bold;
     
 }
 

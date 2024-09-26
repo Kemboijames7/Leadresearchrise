@@ -20,6 +20,28 @@ ScrollReveal().reveal(".feature__card", {
   });
 
 
+// Define functions in the global scope
+window.doGTranslate = function(langPair) {
+  if (langPair === '') return;
+  var lang = langPair.split('|')[1];
+  var select = document.querySelector('select.goog-te-combo');
+  if (select) {
+      select.value = lang;
+      select.dispatchEvent(new Event('change'));
+  }
+}
+
+window.googleTranslateElementInit = function() {
+  new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,fr',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+  }, 'google_translate_element');
+}
+
+
+
+
   function updateTime() {
     const timeElement = document.getElementById('time');
     const now = new Date();

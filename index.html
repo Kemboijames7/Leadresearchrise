@@ -12,7 +12,14 @@
     <header id="header">
       
         <nav class="navbar">
-          
+            <div id="gtranslate" class="widget_gtranslate">
+                <a href="#" onclick="doGTranslate('fr|fr');return false;" title="French" class="glink nturl notranslate">
+                    <img src="./images/fr.png" height="24" width="24" alt="French">
+                </a>
+                <a href="#" onclick="doGTranslate('fr|en');return false;" title="English" class="glink nturl notranslate">
+                    <img src="./images/en.png" height="24" width="24" alt="English">
+                </a>
+                    </div>
             <div class="container">
                 <div id="header-logo">
                     <a href="#">Leadresearchrise</a>
@@ -33,6 +40,7 @@
                 <a href="tel:+02076924300" class="no-button">020 7692 4300</a>
                 <a href="/users/login" class="button third">Login</a>
                 <a href="/users/register/new/registration" class="button third">Register</a>
+              
              </div>  
               
             </div>
@@ -167,8 +175,9 @@
                         <input type="text" name="name" placeholder="Your Name" class="form-control" required>
                         <input type="email" id="emailInput" name="email" placeholder="Your Email" class="form-control"   required>
                         <textarea name="message" placeholder="Your Message" class="form-control" required></textarea>
-                        <button type="submit" class="btn btn-dark">Send Message</button>
                         <h2 id="error-message"></h2>
+                        <button type="submit" class="btn btn-dark">Send Message</button>
+                      
                     </form>
                 </div>
             </div>
@@ -206,6 +215,7 @@
     </footer>
 
     <!-- JavaScript -->
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="main.js"></script>
 </body>
