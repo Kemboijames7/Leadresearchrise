@@ -132,6 +132,22 @@ window.googleTranslateElementInit = function() {
      body.classList.remove('dark-mode'); 
  }
  
+//Lazy Loading Code
+
+const lazyImages = document.querySelectorAll('img[data-src]');
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            observer.unobserve(img);
+        }
+    });
+});
+
+lazyImages.forEach(image => observer.observe(image));
+
+
 
 
 
