@@ -10,8 +10,19 @@
 <body>
     <!-- Header Section -->
     <header id="header">
-      
-        <nav class="navbar">
+            <!-- Theme Toggle Dropdown -->
+            <div class="theme-dropdown">
+                <div class="dropdown-container">
+                    <button class="dropdown-button">
+                        Theme <i class="ri-arrow-drop-down-fill"></i>
+                    </button>
+                    <div class="dropdown-content" style="display: none;">
+                        <a href="#" id="lightMode">Light Mode</a>
+                        <a href="#" id="darkMode">Dark Mode</a>
+                    </div>
+                </div>
+            </div>
+
             <div id="gtranslate" class="widget_gtranslate">
                 <a href="#" onclick="doGTranslate('fr|fr');return false;" title="French" class="glink nturl notranslate">
                     <img src="./images/fr.png" height="24" width="24" alt="French">
@@ -20,6 +31,13 @@
                     <img src="./images/en.png" height="24" width="24" alt="English">
                 </a>
                     </div>
+
+                    <div id="google_translate_element" style="display:none;"></div>
+        <nav class="navbar">
+      
+            
+                    
+                    
             <div class="container">
                 <div id="header-logo">
                     <a href="#">Leadresearchrise</a>
@@ -49,36 +67,45 @@
 
     <!-- Hero Section -->
     <section class="hero-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
+        <div class="container-row">
+            <div class="row-text">
+                <div class="text-center">
                     <h1>Welcome to LEADRESEARCHRISE</h1>
                     <p>Your ultimate solution for Lead profiling.</p>
                     <a href="#signup" class="btn btn-primary">Get Started</a>
                 </div>
-            </div>
+          
             <div>
-                tool and dervices Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa qui aut nostrum consequuntur natus nisi accusantium sint quis! Sequi culpa voluptatibus,tur!
-            </div>
+                Find, win and keep more
+                clients with precision data at scale.
+                <br>
+                Stop targeting contacts with generic one-size fits all data. Start getting your ideal customer data on demand.
         </div>
+    </div>
+</div>
     </section>
 
     <!-- Features Section -->
     <section id="features" class="features-section">
         <div class="container">
-            <h2>Our Features</h2>
-            <div class="row">
+            <h2>Our Features</h2> 
+            <div class="row-feature">
                 <div class="col-md-4 feature-item">
-                    <h3>Feature 1</h3>
-                    <p>Explanation of the feature goes here.</p>
+                    <h3> Social Follower Monitoring </h3>
+                    <p> "Look up a company's TikTok, Instagram, and Facebook address and find the follower count for each property."</p>
+                   
                 </div>
                 <div class="col-md-4 feature-item">
-                    <h3>Feature 2</h3>
-                    <p>Explanation of the feature goes here.</p>
+                    <h3>Find International Contacts</h3>
+                    <p>
+                        "Uncover international contacts in EMEA, APJ, and LATAM with ease to fuel your global pipeline and remove blockers from global growth goals."
+                    </p>
                 </div>
                 <div class="col-md-4 feature-item">
-                    <h3>Feature 3</h3>
-                    <p>Explanation of the feature goes here.</p>
+                    <h3>Identify SMBs</h3>
+                    <p>
+                        "Find, Track and Score Small and Medium Businesses at scale using data gathering methods unique to your industry of focus and market segmentation."
+                    </p>
                 </div>
             </div>
         </div>
@@ -172,6 +199,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <form class="contact-form">
+                        <label  for=""> Send us a message</label>
                         <input type="text" name="name" placeholder="Your Name" class="form-control" required>
                         <input type="email" id="emailInput" name="email" placeholder="Your Email" class="form-control"   required>
                         <textarea name="message" placeholder="Your Message" class="form-control" required></textarea>
