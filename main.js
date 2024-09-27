@@ -1,4 +1,39 @@
+document.addEventListener('keydown', function(e) {
+    // Tab key: Focus on the next interactive element
+    if (e.key === 'Tab') {
+        const focusedElement = document.activeElement;
+        const focusableElements = document.querySelectorAll('input, textarea, button');
+        const index = Array.prototype.indexOf.call(focusableElements, focusedElement);
+        
+        if (index > -1) {
+            const nextElement = focusableElements[index + 1] || focusableElements[0]; // Loop to first element
+            nextElement.focus();
+            e.preventDefault(); // Prevent default tab behavior if needed
+        }
+    }
 
+    // Enter key: Submit form or trigger button click
+    else if (e.key === 'Enter') {
+        const focusedElement = document.activeElement;
+        
+        // If focused on an input or textarea, submit the form
+        if (focusedElement.tagName === 'INPUT' || focusedElement.tagName === 'TEXTAREA') {
+            const form = focusedElement.closest('form');
+            if (form) {
+                form.submit();
+            }
+        }
+        
+        // If focused on a button, trigger a click event
+        else if (focusedElement.tagName === 'BUTTON') {
+            focusedElement.click();
+        }
+    }
+});
+
+
+
+ 
 const scrollRevealOption = {
     distance: "50px",
     origin: "bottom",
