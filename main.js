@@ -177,3 +177,23 @@ lazyImages.forEach(image => observer.observe(image));
 
   })
 
+  const scrollTopBtn = document.querySelector('.scroll_top');
+
+  // Show the button when the user scrolls past 3/4 of the page
+  window.addEventListener('scroll', function() {
+      const scrollHeight = document.documentElement.scrollHeight;
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      const viewportHeight = window.innerHeight;
+  
+      // Show when scrolled past 3/4 of the page
+      if (currentScroll > (scrollHeight - viewportHeight) * 0.75) {
+          scrollTopBtn.style.display = 'inline'; // Show the scroll button
+      } else {
+          scrollTopBtn.style.display = 'none'; // Hide when above the threshold
+      }
+  });
+  
+  // Scroll to the top when the button is clicked
+  scrollTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
