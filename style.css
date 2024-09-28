@@ -369,8 +369,8 @@ a {
 /* Forms */
 .form-control {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
+    padding: 6px;
+    margin-bottom: 2px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
@@ -397,6 +397,14 @@ h2 {
 p {
     margin-bottom: 20px;
     line-height: 1.8;
+}
+#error-message {
+    margin-bottom: 2px;
+    padding-bottom: 8px;
+    line-height: .6em;
+    font-size: 16px;
+    color: rgb(184, 0, 0);
+    font-weight: 300;
 }
 
 /* Spacing */
@@ -497,18 +505,22 @@ li {
     list-style-type: none;
 }
 
+/* footer #timeFooter {
+    padding-right: 50px;
+    padding-bottom: 0;
+    padding-left: 50px;
+    background-color: #333 !important;
 
+} */
 
 .social-links {
     padding: 0;
-    width: 100%;
-   
-   
+    width: 100%; 
 }
 
 
- a { padding: 10px; 
-    gap: 10px;
+.row-footer .social-links a { padding: 10px; 
+    gap: 30px;
     border-radius: 20%;
    font-weight: bold;
     
@@ -600,7 +612,7 @@ footer .container {
     padding: 20px;
     background-color: #f1f1f1;
     width: 100%;
-     
+    margin-top: 30px; 
 }
 
 #timeFooter  p {
@@ -633,4 +645,7 @@ footer .container {
     color: black;
 }
 
-  
+.row-footer{
+    width: 400px;
+    
+}
