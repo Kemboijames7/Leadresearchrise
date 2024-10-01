@@ -37,63 +37,81 @@ document.addEventListener('keydown', function(e) {
 const scrollRevealOption = {
     distance: "50px",
     origin: "bottom",
-    duration:1000,
+    duration:700,
 };
 
 const sr = ScrollReveal();
 
 // Apply the reveal effect
-sr.reveal(".member", {
+sr.reveal(".et_pb_image_wrap", {
     ...scrollRevealOption,
-    delay: 500
+    delay: 300
 });
 
-// feature container
-ScrollReveal().reveal(".feature__card", {
+
+ScrollReveal().reveal(".et_pb_image_wrap", {
     ...scrollRevealOption,
-    interval: 500,
+    interval: 200,
   });
 
 
 // Define functions in the global scope
-window.doGTranslate = function(langPair, event) {
-  if (event) {
-      event.preventDefault(); 
-      event.stopPropagation(); 
-  }
+window.doLingvaTranslate = async function(langPair, event) {
+    console.log('Language pair clicked:', langPair);
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
 
-  console.log('doGTranslate called with:', langPair); // Debug log
-  if (langPair === '') return;
+    console.log('doLingvaTranslate called with:', langPair); // Debug log
+    if (langPair === '') return;
 
-  var lang = langPair.split('|')[1];
- 
-   // Check for select element, retry if not found
-   var checkSelectElement = function(retries) {
-    var select = document.querySelector('select.goog-te-combo');
-    console.log('Checking for select element. Attempts remaining:', retries); // Debug log
-    if (select) {
-        console.log('Select element found:', select); // Debug log
-        select.value = lang;
-        select.dispatchEvent(new Event('change'));
-    } else if (retries > 0) {
-        setTimeout(function() {
-            checkSelectElement(retries - 1);
-        }, 100); // Check every 100ms
-    } else {
-        console.error('Google Translate select element not found after retries.');
+    var [sourceLang, targetLang] = langPair.split('|');
+
+    // Fetch the translation for the whole document content
+    var textToTranslate = document.body.innerText; // Adjust this if you need to translate only specific content
+
+    try {
+        // Call the Lingva Translate API
+        const response = await fetch(`https://lingva.ml/api/v1/${sourceLang}/${targetLang}/${encodeURIComponent(textToTranslate)}`);
+
+        if (!response.ok) {
+            throw new Error(`Translation request failed with status ${response.status}`);
+        }
+
+        const data = await response.json();
+        const translatedText = data.translation;
+
+        // Replace the body text with the translated content
+        document.body.innerText = translatedText; // You may want to replace only certain parts of the page
+
+        console.log('Translation successful:', translatedText); // Debug log
+    } catch (error) {
+        console.error('Error during translation:', error);
     }
 };
 
-checkSelectElement(10);
-};
 
-window.googleTranslateElementInit = function() {
-  new google.translate.TranslateElement({
-      pageLanguage: 'en',
-      includedLanguages: 'en,fr',
-      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-  }, 'google_translate_element');
+
+// Function to initialize your own translation interface, if needed
+window.customTranslateElementInit = function() {
+    // Example: Creating buttons for language switching
+    const enButton = document.createElement('button');
+    enButton.innerText = 'English';
+    enButton.onclick = (e) => window.doLingvaTranslate('fr|en', e); // Translate from French to English
+
+    const frButton = document.createElement('button');
+    frButton.innerText = 'Français';
+    frButton.onclick = (e) => window.doLingvaTranslate('en|fr', e); // Translate from English to French
+
+    document.body.appendChild(enButton);
+    document.body.appendChild(frButton);
 }
+
+// Call this function once the page loads
+window.onload = function() {
+    window.customTranslateElementInit();
+};
 
 
  // JavaScript for theme toggle 
@@ -202,4 +220,29 @@ scrollTopButton.addEventListener('click', () => {
         behavior: 'smooth' 
         
     });
+});
+
+
+const sections = document.querySelectorAll('.choice'); 
+const navLinks = document.querySelectorAll('#nav-menu li'); 
+
+window.addEventListener('scroll', () => {
+  let current = '';
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.clientHeight;
+
+    // Use window.scrollY instead of pageYOffset
+    if (window.scrollY >= sectionTop - sectionHeight / 3) {
+      current = section.getAttribute('id');
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${current}`) {
+      link.classList.add('active');
+    }
+  });
 });
