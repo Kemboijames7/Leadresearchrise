@@ -114,41 +114,56 @@ window.onload = function() {
 };
 
 
- // JavaScript for theme toggle 
- const dropdownContainer = document.querySelector('.dropdown-container');
- const dropdownButton = document.querySelector('.dropdown-button');
- const lightModeLink = document.getElementById('lightMode');
- const darkModeLink = document.getElementById('darkMode');
- const body = document.body;
- 
- // Toggle dropdown visibility
- dropdownButton.addEventListener('click', () => {
-     dropdownContainer.classList.toggle('active');
-    
- });
- 
- // Change theme to light mode
- lightModeLink.addEventListener('click', (event) => {
-     event.preventDefault(); 
-     body.classList.remove('dark-mode'); 
-     localStorage.setItem('theme', 'light'); 
- 
- });
- 
- // Change theme to dark mode
- darkModeLink.addEventListener('click', (event) => {
-     event.preventDefault(); 
-     body.classList.add('dark-mode'); 
-     localStorage.setItem('theme', 'dark'); 
-     console.log('Theme changed to Dark Mode');
- });
- 
- // Apply saved theme on page load
- if (localStorage.getItem('theme') === 'dark') {
-     body.classList.add('dark-mode');
- } else {
-     body.classList.remove('dark-mode'); 
- }
+const dropdownContainer = document.querySelector('.dropdown-container');
+const dropdownButton = document.querySelector('.dropdown-button');
+const lightModeLink = document.getElementById('lightMode');
+const darkModeLink = document.getElementById('darkMode');
+const body = document.body;
+
+// Simulated feature flag stored in localStorage
+localStorage.setItem('darkModeFeature', 'enabled');  // Simulate enabling/disabling feature
+
+// Check if dark mode feature is enabled
+const isDarkModeFeatureEnabled = localStorage.getItem('darkModeFeature') === 'enabled';
+
+// Toggle dropdown visibility
+dropdownButton.addEventListener('click', () => {
+  dropdownContainer.classList.toggle('active');
+});
+
+// Only show Dark Mode option if feature is enabled
+if (isDarkModeFeatureEnabled) {
+  darkModeLink.style.display = 'block';
+} else {
+  darkModeLink.style.display = 'none'; // Hide Dark Mode option if feature is disabled
+}
+
+// Light mode toggle
+lightModeLink.addEventListener('click', (event) => {
+  event.preventDefault();
+  body.classList.remove('dark-mode');
+  localStorage.setItem('theme', 'light');
+});
+
+// Dark mode toggle (only if the feature is enabled)
+darkModeLink.addEventListener('click', (event) => {
+  if (isDarkModeFeatureEnabled) {
+    event.preventDefault();
+    body.classList.add('dark-mode');
+    localStorage.setItem('theme', 'dark');
+    console.log('Theme changed to Dark Mode');
+  } else {
+    console.log('Dark Mode feature is not available');
+  }
+});
+
+// Apply saved theme on page load
+if (localStorage.getItem('theme') === 'dark' && isDarkModeFeatureEnabled) {
+  body.classList.add('dark-mode');
+} else {
+  body.classList.remove('dark-mode');
+}
+
  
 //Lazy Loading Code
 
@@ -248,19 +263,5 @@ window.addEventListener('scroll', () => {
 });
 
 
-const featureFlags = {
-    newNavbar: true, // Enable/disable new navbar feature
-    darkMode: false, // Disable dark mode feature for now
-  };
-  
-  // Check if the feature flag is enabled before applying the feature
-  if (featureFlags.newNavbar) {
-    // Code to display the new navbar
-    document.querySelector('#navbar').classList.add('new-navbar');
-  }
-  
-  if (featureFlags.darkMode) {
-    // Apply dark mode styles
-    document.body.classList.add('dark-mode');
-  }
+
   
