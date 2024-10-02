@@ -499,7 +499,38 @@ box-shadow: 2px 4px 15px -10px rgba(0, 0, 0, .3);
     font-style: normal;
 }
 
- 
+.menu__images {
+    margin-bottom: 4rem;
+    display: grid;
+    gap: 1rem;
+  }
+  .menu__images img {
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .menu__banner {
+    list-style: none;
+    padding: 4rem 2rem;
+    display: grid;
+    gap: 2rem;
+    text-align: center;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+  }
+  .menu__banner span {
+    font-size: 3.5rem;
+    color: var(--secondary-color);
+  }
+  .menu__banner h4 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+  
+  .menu__banner p {
+    color: var(--text-light);
+  }
 
 li {
     list-style-type: none;

@@ -224,7 +224,7 @@ scrollTopButton.addEventListener('click', () => {
 
 
 const sections = document.querySelectorAll('.choice'); 
-const navLinks = document.querySelectorAll('#nav-menu li'); 
+const navLinks = document.querySelectorAll('#nav-menu li a'); 
 
 window.addEventListener('scroll', () => {
   let current = '';
@@ -246,3 +246,21 @@ window.addEventListener('scroll', () => {
     }
   });
 });
+
+
+const featureFlags = {
+    newNavbar: true, // Enable/disable new navbar feature
+    darkMode: false, // Disable dark mode feature for now
+  };
+  
+  // Check if the feature flag is enabled before applying the feature
+  if (featureFlags.newNavbar) {
+    // Code to display the new navbar
+    document.querySelector('#navbar').classList.add('new-navbar');
+  }
+  
+  if (featureFlags.darkMode) {
+    // Apply dark mode styles
+    document.body.classList.add('dark-mode');
+  }
+  
