@@ -153,7 +153,7 @@ darkModeLink.addEventListener('click', (event) => {
     localStorage.setItem('theme', 'dark');
     console.log('Theme changed to Dark Mode');
   } else {
-    console.log('Dark Mode feature is not available');
+   alert('Dark Mode feature is not available');
   }
 });
 
@@ -262,6 +262,13 @@ window.addEventListener('scroll', () => {
   });
 });
 
+
+var typed = new Typed('.span__ri', {
+  strings: ["First sentence.", "Second sentence."],
+  typeSpeed: 50,
+  backSpeed: 50,
+  loop: true
+});
 
 
   
