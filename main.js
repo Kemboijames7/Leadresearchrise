@@ -271,4 +271,18 @@ var typed = new Typed('.span__ri', {
 });
 
 
-  
+const { fromEvent } = rxjs;
+const { map } = rxjs.operators;
+
+const visitorCountUpdates = new rxjs.Observable(observer => {
+  let count = 0;
+  setInterval(() => {
+    count += Math.floor(Math.random() * 10); // Simulate new visitors
+    observer.next(count); // Push updated visitor count
+  }, 2000);
+});
+
+// Subscribe to the observable to update the UI
+visitorCountUpdates.subscribe(count => {
+  document.getElementById('visitorCount').innerText = count;
+});
