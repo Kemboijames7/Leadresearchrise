@@ -263,7 +263,7 @@ window.addEventListener('scroll', () => {
 });
 
 
-var typed = new Typed('.span__ri', {
+var typed = new Typed ('.span__ri', {
   strings: ["First sentence.", "Second sentence."],
   typeSpeed: 50,
   backSpeed: 50,
@@ -271,7 +271,8 @@ var typed = new Typed('.span__ri', {
 });
 
 
-const { fromEvent } = rxjs;
+function reactiveProgramming () {
+  const { fromEvent } = rxjs;
 const { map } = rxjs.operators;
 
 const visitorCountUpdates = new rxjs.Observable(observer => {
@@ -286,3 +287,49 @@ const visitorCountUpdates = new rxjs.Observable(observer => {
 visitorCountUpdates.subscribe(count => {
   document.getElementById('visitorCount').innerText = count;
 });
+}
+reactiveProgramming ()
+
+
+  const commentForm = document.getElementById('commentForm');
+  const commentsSection = document.getElementById('commentsSection');
+  const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
+
+  // Load saved comments from localStorage
+  function loadComments() {
+    commentsSection.innerHTML = '<h3>Comments:</h3>';
+    savedComments.forEach(comment => {
+      const commentElement = document.createElement('p');
+      commentElement.innerText = comment;
+      commentsSection.appendChild(commentElement);
+    });
+  }
+
+  // Save comments to localStorage
+  function saveComments() {
+    localStorage.setItem('comments', JSON.stringify(savedComments));
+  }
+
+  // Handle form submission
+  commentForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const commentText = document.getElementById('commentText').value;
+    
+    if (commentText.trim()) {
+      // Add the comment to the saved comments array
+      savedComments.push(commentText);
+      saveComments();
+
+      // Add the new comment to the UI
+      const newComment = document.createElement('p');
+      newComment.innerText = commentText;
+      commentsSection.appendChild(newComment);
+      
+      // Clear the form
+      commentForm.reset();
+    }
+  });
+
+  // Initialize
+  loadComments();
+
