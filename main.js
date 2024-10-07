@@ -333,3 +333,12 @@ reactiveProgramming ()
   // Initialize
   loadComments();
 
+
+  //Remove placeholder emoji in the form of emoji 
+  
+  function removeEmoji(text) {
+    const emojiRegex = /emoji\d+/g; // Match placeholder emoji patterns
+    return text.replace(emojiRegex, '');
+  }
+
+    

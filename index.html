@@ -285,6 +285,7 @@
                     <form class="contact-form">
                         <label  for=""> Send us a message</label>
                         <input type="text" name="name" placeholder="Your Name" class="form-control" required>
+                        <input type="number" name="name" placeholder="Your phone " class="form-control" required>
                         <input type="email" id="emailInput" name="email" placeholder="Your Email" class="form-control"   required>
                         <textarea name="message" placeholder="Your Message" class="form-control" required></textarea>
                         <h2 id="error-message"></h2>
@@ -295,6 +296,32 @@
             </div>
         </div>
     </section>
+
+    <section id="boxes">
+    <form id="commentForm">
+        <label for="commentText">Leave a Comment:</label>
+        <textarea id="commentText" placeholder="Write your comment here..." required></textarea>
+        <button type="submit">Post Comment</button>
+      </form>
+      
+      <!-- Comment Section -->
+      <div id="commentsSection">
+        <h3>Comments:</h3>
+      </div>
+
+      <div id="chatbot">
+        <h1>Chatbot</h1>
+        <label for="userInput">Type something for the chatbot:</label>
+        <br>
+        <input type="text" id="userInput" placeholder="e.g., Chatbot, help me!">
+        <br>
+        <button onclick="chatbotResponse()">Send</button>
+    
+        <div id="response"></div>
+      </div>
+    </section>
+
+
 
     <!-- Footer Section -->
     <footer>
