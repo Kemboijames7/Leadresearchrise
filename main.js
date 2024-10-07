@@ -349,6 +349,8 @@ reactiveProgramming ()
 
 
   // Validate phone number in the format "(+###) ###-###-###"
+  const phoneNumber = document.getElementById('phoneNumber');
+  phoneNumber.addEventListener("click", checkPhoneNumber);
     function checkPhoneNumber(phoneNumber) {
       const regex = /^\(\+\d{3}\) \d{2}-\d{3}-\d{3}$/;
       if (regex.test(phoneNumber)) {
@@ -357,4 +359,10 @@ reactiveProgramming ()
         return `Oops, it seems like I can't reach out to ${phoneNumber}`;
       }
     }
-    
+
+    const fullName = document.getElementById('fullName')
+    function niceToMeetYou(fullName) {
+      return fullName.replace(/(\w+),\s*(\w+)/, "Nice to meet you, $2 $1");
+    }
+
+   
