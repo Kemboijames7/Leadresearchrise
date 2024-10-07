@@ -334,11 +334,27 @@ reactiveProgramming ()
   loadComments();
 
 
+ // Validate if the command starts with "Chatbot"
+ function isValidCommand(command) {
+  const regex = /^chatbot/i; // Must start with "Chatbot"
+  return regex.test(command);
+}
+
   //Remove placeholder emoji in the form of emoji 
-  
+
   function removeEmoji(text) {
     const emojiRegex = /emoji\d+/g; // Match placeholder emoji patterns
     return text.replace(emojiRegex, '');
   }
 
+
+  // Validate phone number in the format "(+###) ###-###-###"
+    function checkPhoneNumber(phoneNumber) {
+      const regex = /^\(\+\d{3}\) \d{2}-\d{3}-\d{3}$/;
+      if (regex.test(phoneNumber)) {
+        return "Thanks! You can now download me to your phone.";
+      } else {
+        return `Oops, it seems like I can't reach out to ${phoneNumber}`;
+      }
+    }
     
