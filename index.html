@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LEADRESEARCHRISE</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -43,16 +44,39 @@
                 <div id="header-logo">
                     <a href="#">Leadresearchrise</a>
                    </div> 
-               <div id="header-content">
-                <ul class="nav-menu">
-                    <li><a href="#About">About</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#Insights">Insights</a></li>
-                    <li><a href="#Team">Team</a></li>
-                    <li><a href="#Sectors">Sectors</a></li>
-</ul>
+                   <div id="header-content">
+                    <ul class="nav-menu">
+                        <li><a href="#About">About</a>
+                            <div class="dropdown-content">
+                                <a href="#Events">Events</a>
+                                <a href="#WhatWeDo">What We Do</a>
+                                <a href="#OurTeam">Our Team</a>
+                                <a href="#DiversityAndInclusion">Diversity and Inclusion</a>
+                                <a href="#EnvironmentalSustainability">Environmental Sustainability</a>
+                            </div>
+                        </li>
+                        <li><a href="#testimonials">Testimonials</a>
+                        </li>
+                        <div class="dropdown-content">
+                            <a href="#ResearcherOnDemand">Researcher on Demand</a>
+                            <a href="#Search">Search</a>
+                            <a href="#ResearchConsultancy">Research Consultancy</a>
+                            <a href="#CaseStudies">Case Studies</a>
+                            <a href="#SendBusinessBrief">Send a Business Brief</a>
+                        </div>
+                            <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#contact">Contact</a>
+                            <div class="dropdown-content">
+                                <a href="#SendBusinessBrief">Send a Business Brief</a>
+                                <a href="#FAQs">FAQs</a>
+                            </div>
+                        </li>
+                        <li><a href="#Insights">Insights</a>
+                         
+                        </li>
+                        <li><a href="#Team">Team</a></li>
+                        <li><a href="#Sectors">Sectors</a></li>
+    </ul>
 </div>
 
   <div id="top-links" class="hidden-sm hidden-xs"> 
@@ -282,7 +306,7 @@
             <h2>Contact Us</h2>
             <div class="row">
                 <div class="col-md-8">
-                    <form class="contact-form">
+                    <form id="contactForm">
                         <label  for=""> Send us a message</label>
                         <input type="text" id= "fullName" name="name" placeholder="Your Name" class="form-control" required>
                         <input type="Number" id="phoneNumber" name="name" placeholder="Your phone " class="form-control" required>
@@ -315,7 +339,7 @@
         <br>
         <input type="text" id="userInput" placeholder="e.g., Chatbot, help me!">
         <br>
-        <button onclick="chatbotResponse()">Send</button>
+        <button id="chatBot">Send</button>
 
     
         <div id="response"></div>
@@ -365,6 +389,7 @@
     </footer>
 
     <!-- JavaScript -->
+   
     <script src="https://unpkg.com/rxjs/bundles/rxjs.umd.min.js"></script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="https://unpkg.com/scrollreveal"></script>

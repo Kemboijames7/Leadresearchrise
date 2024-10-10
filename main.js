@@ -200,23 +200,28 @@ lazyImages.forEach(image => observer.observe(image));
   const emailInput = document.getElementById('emailInput');
   const errorMessage = document.getElementById('error-message');
 
+ // Check if elements exist
+if (!contactForm || !emailInput || !errorMessage) {
+  console.error("One or more elements not found in the DOM.");
+} else {
   contactForm.addEventListener('submit', (event) => {
-    const email = emailInput.value;
-  if (sentEmails.has(email)) {
-    event.preventDefault(); // Prevent form submission
-    errorMessage.textContent = `Email has already been sent to ${email}`;
-    errorMessage.style.color = '#B80000';
-    errorMessage.style.fontWeight = 'bold';
-  } else if (emailInput.validity.valid) {
-    // If the email is valid and hasn't been sent, submit the form and add the email to the set
-    sentEmails.add(email);
-    alert('Message sent!');  
-  } else {
-    event.preventDefault(); // Prevent form submission if email is invalid
-    errorMessage.textContent = 'Please enter a valid email address';
-  }
-});
+      const email = emailInput.value.trim(); // Trim whitespace
 
+      if (sentEmails.has(email)) {
+          event.preventDefault();
+          errorMessage.textContent = `Email has already been sent to ${email}`;
+          errorMessage.style.color = '#B80000';
+          errorMessage.style.fontWeight = 'bold';
+      } else if (emailInput.validity.valid) {
+          // If the email is valid and hasn't been sent, submit the form and add the email to the set
+          sentEmails.add(email);
+          alert('Message sent!');
+      } else {
+          event.preventDefault();
+          errorMessage.textContent = 'Please enter a valid email address';
+      }
+  });
+}
 
   const scrollTopButton = document.querySelector('.scroll_top');
 
@@ -270,11 +275,13 @@ window.addEventListener('scroll', () => {
 });
 
 
-var typed = new Typed ('.span__ri', {
-  strings: ["First sentence.", "Second sentence."],
-  typeSpeed: 50,
-  backSpeed: 50,
-  loop: true
+document.addEventListener('DOMContentLoaded', () => {
+  var typed = new Typed('.span__ri', {
+      strings: ["First sentence.", "Second sentence."],
+      typeSpeed: 50,
+      backSpeed: 50,
+      loop: true
+  });
 });
 
 
@@ -295,10 +302,10 @@ visitorCountUpdates.subscribe(count => {
   document.getElementById('visitorCount').innerText = count;
 });
 }
-reactiveProgramming ()
 
 
-  const commentForm = document.getElementById('commentForm');
+
+
   const commentsSection = document.getElementById('commentsSection');
   const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
 
@@ -337,8 +344,7 @@ reactiveProgramming ()
     }
   });
 
-  // Initialize
-  loadComments();
+
 
 
  // Validate if the command starts with "Chatbot"
@@ -347,13 +353,31 @@ reactiveProgramming ()
   return regex.test(command);
 }
 
-  //Remove placeholder emoji in the form of emoji 
+ 
+// Function to remove emojis from text
+function removeEmoji(text) {
+  const emojiRegex = /[\u{1F600}-\u{1F64F}]/gu; // Unicode range for emojis
+  return text.replace(emojiRegex, '');
+}
 
-
-  function removeEmoji(text) {
-    const emojiRegex = /emoji\d+/g; // Match placeholder emoji patterns
-    return text.replace(emojiRegex, '');
+// Handle button click event
+document.getElementById('chatBot').addEventListener('click', () => {
+  const userInput = document.getElementById('userInput').value;
+  
+  const cleanInput = removeEmoji(userInput);
+  
+  // Validate the command
+  if (isValidCommand(cleanInput)) {
+      // Display response
+      document.getElementById('response').textContent = `You said: "${cleanInput}"`;
+  } else {
+      document.getElementById('response').textContent = 'Please start your message with "Chatbot".';
   }
+
+  // Clear the input field
+  document.getElementById('userInput').value = '';
+});
+
 
 
   // Validate phone number in the format "(+###) ###-###-###"
