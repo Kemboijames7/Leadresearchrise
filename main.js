@@ -194,21 +194,28 @@ lazyImages.forEach(image => observer.observe(image));
   // Update time every second
   setInterval(updateTime, 1000);
 
+  const sentEmails = new Set();
 
+  const contactForm = document.getElementById('contactForm');
   const emailInput = document.getElementById('emailInput');
   const errorMessage = document.getElementById('error-message');
 
-  emailInput.addEventListener('input', () =>{
-    if (!emailInput.validity.valid) {
-        
-        errorMessage.textContent = 'Please enter a valid email address';
-        errorMessage.style.color = '#B80000';
-        errorMessage.style.fontWeight = 'bold';
-    } else {
-        errorMessage.textContent = '';
-    }
-
-  })
+  contactForm.addEventListener('submit', (event) => {
+    const email = emailInput.value;
+  if (sentEmails.has(email)) {
+    event.preventDefault(); // Prevent form submission
+    errorMessage.textContent = `Email has already been sent to ${email}`;
+    errorMessage.style.color = '#B80000';
+    errorMessage.style.fontWeight = 'bold';
+  } else if (emailInput.validity.valid) {
+    // If the email is valid and hasn't been sent, submit the form and add the email to the set
+    sentEmails.add(email);
+    alert('Message sent!');  
+  } else {
+    event.preventDefault(); // Prevent form submission if email is invalid
+    errorMessage.textContent = 'Please enter a valid email address';
+  }
+});
 
 
   const scrollTopButton = document.querySelector('.scroll_top');
@@ -239,7 +246,7 @@ scrollTopButton.addEventListener('click', () => {
 
 
 const sections = document.querySelectorAll('.choice'); 
-const navLinks = document.querySelectorAll('#nav-menu li a'); 
+const navLinks = document.querySelectorAll('#nav-menu li a');
 
 window.addEventListener('scroll', () => {
   let current = '';
@@ -342,6 +349,7 @@ reactiveProgramming ()
 
   //Remove placeholder emoji in the form of emoji 
 
+
   function removeEmoji(text) {
     const emojiRegex = /emoji\d+/g; // Match placeholder emoji patterns
     return text.replace(emojiRegex, '');
@@ -365,4 +373,15 @@ reactiveProgramming ()
       return fullName.replace(/(\w+),\s*(\w+)/, "Nice to meet you, $2 $1");
     }
 
+
+  // Validate phone number in the format "(+###) ###-###-###"
+    function checkPhoneNumber(phoneNumber) {
+      const regex = /^\(\+\d{3}\) \d{2}-\d{3}-\d{3}$/;
+      if (regex.test(phoneNumber)) {
+        return "Thanks! You can now download me to your phone.";
+      } else {
+        return `Oops, it seems like I can't reach out to ${phoneNumber}`;
+      }
+    }
+    
    

@@ -284,8 +284,8 @@
                 <div class="col-md-8">
                     <form class="contact-form">
                         <label  for=""> Send us a message</label>
-                        <input type="text" name="name" placeholder="Your Name" class="form-control" required>
-                        <input type="phoneNumber" name="name" placeholder="Your phone " class="form-control" required>
+                        <input type="text" id= "fullName" name="name" placeholder="Your Name" class="form-control" required>
+                        <input type="Number" id="phoneNumber" name="name" placeholder="Your phone " class="form-control" required>
                         <input type="email" id="emailInput" name="email" placeholder="Your Email" class="form-control"   required>
                         <textarea name="message" placeholder="Your Message" class="form-control" required></textarea>
                         <h2 id="error-message"></h2>
@@ -316,6 +316,7 @@
         <input type="text" id="userInput" placeholder="e.g., Chatbot, help me!">
         <br>
         <button onclick="chatbotResponse()">Send</button>
+
     
         <div id="response"></div>
       </div>
