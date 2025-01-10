@@ -348,33 +348,43 @@ visitorCountUpdates.subscribe(count => {
 
 
  // Validate if the command starts with "Chatbot"
- function isValidCommand(command) {
-  const regex = /^chatbot/i; // Must start with "Chatbot"
-  return regex.test(command);
+ function removeEmoji(str) {
+  return str.replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}\u{1F1E6}-\u{1F1FF}]/gu, '');
 }
 
- 
-// Function to remove emojis from text
-function removeEmoji(text) {
-  const emojiRegex = /[\u{1F600}-\u{1F64F}]/gu; // Unicode range for emojis
-  return text.replace(emojiRegex, '');
+function isValidCommand(str) {
+  return str.toLowerCase().startsWith("chatbot");
 }
 
-// Handle button click event
-document.getElementById('chatBot').addEventListener('click', () => {
+
+document.getElementById('chatBot').addEventListener('click', async () => {
   const userInput = document.getElementById('userInput').value;
-  
   const cleanInput = removeEmoji(userInput);
   
-  // Validate the command
   if (isValidCommand(cleanInput)) {
-      // Display response
-      document.getElementById('response').textContent = `You said: "${cleanInput}"`;
+    try {
+      const response = await fetch('/api/chatbot', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: cleanInput }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        document.getElementById('response').textContent = data.reply;
+      } else {
+        throw new Error('Chatbot API call failed');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      document.getElementById('response').textContent = 'An error occurred. Please try again later.';
+    }
   } else {
-      document.getElementById('response').textContent = 'Please start your message with "Chatbot".';
+    document.getElementById('response').textContent = 'Please start your message with "Chatbot".';
   }
 
-  // Clear the input field
   document.getElementById('userInput').value = '';
 });
 
