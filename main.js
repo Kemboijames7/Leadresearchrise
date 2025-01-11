@@ -342,7 +342,8 @@ visitorCountUpdates.subscribe(count => {
       // Clear the form
       commentForm.reset();
       
-// Validate if the command starts with "Chatbot"
+    }
+  });
 // Validate if the command starts with "Chatbot"
 function removeEmoji(str) {
   return str.replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}\u{1F1E6}-\u{1F1FF}]/gu, '');
@@ -352,50 +353,35 @@ function isValidCommand(str) {
   return str.toLowerCase().startsWith("chatbot");
 }
 
-// Simulate a chatbot response with a Promise
-function getChatbotResponse(message) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      // Simulate chatbot replies based on input message
-      if (message.toLowerCase().includes("hello")) {
-        resolve({ reply: "Hello, how can I help you?" });
-      } else if (message.toLowerCase().includes("bye")) {
-        resolve({ reply: "Goodbye! Have a great day!" });
-      } else {
-        reject("Sorry, I don't understand that.");
-      }
-    }, 2000); // Simulate a delay of 2 seconds
-  });
-}
-
-// Event listener for the chatbot button
 document.getElementById('chatBot').addEventListener('click', async () => {
   const userInput = document.getElementById('userInput').value;
   const cleanInput = removeEmoji(userInput);
-  
+console.log(cleanInput)
+  // Check if message starts with "Chatbot"
   if (isValidCommand(cleanInput)) {
-    try {
-      // Use the Promise to get the chatbot's response
-      const data = await getChatbotResponse(cleanInput);
-      document.getElementById('response').textContent = data.reply;
-    } catch (error) {
-      // Handle any errors (e.g., invalid command)
-      document.getElementById('response').textContent = error;
+    // Now check if message contains any greeting
+    const greetings = ["hello", "hi", "habari", "hey"];
+    
+    // If message contains any of the greetings
+    if (greetings.some(greeting => cleanInput.toLowerCase().includes(greeting))) {
+      document.getElementById('response').textContent = "Hello, how can I help you?";
+    }
+    // If message contains "bye"
+    else if (cleanInput.toLowerCase().includes("bye")) {
+      document.getElementById('response').textContent = "Goodbye! Have a great day!";
+    }
+    // If message doesn't contain a greeting, but starts with "Chatbot"
+    else {
+      document.getElementById('response').textContent = "Hello, how can I assist you today?";
     }
   } else {
     document.getElementById('response').textContent = 'Please start your message with "Chatbot".';
   }
 
-  document.getElementById('userInput').value = ''; // Clear the input field
+  document.getElementById('userInput').value = '';
 });
 
-    }
-  });
 
-
-
-
- 
 
 
   // Validate phone number in the format "(+###) ###-###-###"
