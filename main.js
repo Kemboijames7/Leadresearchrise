@@ -164,6 +164,43 @@ if (localStorage.getItem('theme') === 'dark' && isDarkModeFeatureEnabled) {
   body.classList.remove('dark-mode');
 }
 
+//SIGN IN AND REGISTER
+
+// Get the elements
+const loginLink = document.getElementById('loginLink');
+const loginModal = document.getElementById('loginModal');
+const closeBtn = document.getElementById('closeBtn');
+const loginForm = document.getElementById('loginFormContent');
+
+// Show the modal when the login link is clicked
+loginLink.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default link action
+    loginModal.style.display = 'block';
+   console.log('clicked')
+});
+
+// Hide the modal when the close button (X) is clicked
+closeBtn.addEventListener('click', function() {
+    loginModal.style.display = 'none'; // Hide the modal
+});
+
+// Handle form submission (optional, if you want to submit the form)
+loginForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from refreshing the page
+
+    // Get the input values
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Perform a simple check (you can expand this with more complex validation)
+    if (username && password) {
+        alert(`Welcome, ${username}! You have successfully logged in.`);
+        loginModal.style.display = 'none'; // Hide the modal after login
+    } else {
+        alert('Please enter both username and password.');
+    }
+});
+
  
 //Lazy Loading Code
 
@@ -356,7 +393,7 @@ function isValidCommand(str) {
 document.getElementById('chatBot').addEventListener('click', async () => {
   const userInput = document.getElementById('userInput').value;
   const cleanInput = removeEmoji(userInput);
-console.log(cleanInput)
+
   // Check if message starts with "Chatbot"
   if (isValidCommand(cleanInput)) {
     // Now check if message contains any greeting
@@ -373,6 +410,7 @@ console.log(cleanInput)
     // If message doesn't contain a greeting, but starts with "Chatbot"
     else {
       document.getElementById('response').textContent = "Hello, how can I assist you today?";
+      
     }
   } else {
     document.getElementById('response').textContent = 'Please start your message with "Chatbot".';

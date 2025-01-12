@@ -81,7 +81,24 @@
 
   <div id="top-links" class="hidden-sm hidden-xs"> 
                 <a href="tel:+02076924300" class="no-button">020 7692 4300</a>
-                <a href="/users/login" class="button third">Login</a>
+                <a href="#" class="button third" id="loginLink">Login</a>
+                 <!-- Login Modal (Initially Hidden) -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span id="closeBtn" class="close-btn">&times;</span>
+            <h2>Login Form</h2>
+            <form id="loginFormContent">
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="Enter your username" required>
+                <br><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+                <br><br>
+                <button type="submit" id="submitButton">Submit</button>
+            </form>
+        </div>
+    </div>
+
                 <a href="/users/register/new/registration" class="button third">Register</a>
               
              </div>  
