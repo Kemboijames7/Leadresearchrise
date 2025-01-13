@@ -174,15 +174,47 @@ const loginForm = document.getElementById('loginFormContent');
 const openRegisterFromLogin = document.getElementById('openRegisterFromLogin');
 
 // Show the modal when the login link is clicked
+function showModal(modal) {
+  modal.style.display = 'block';
+}
+
+// Function to close the modal
+function closeModal(modal) {
+  modal.style.display = 'none';
+}
+
 loginLink?.addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent the default link action
-    loginModal.style.display = 'block';
-   
+  event.preventDefault();
+  showModal(loginModal);
+});
+// Close Login Modal when close button is clicked
+closeBtn.addEventListener('click', function() {
+  closeModal(loginModal);
 });
 
-// Hide the modal when the close button (X) is clicked
-closeBtn.addEventListener('click', function() {
-    loginModal.style.display = 'none'; // Hide the modal
+// Navigate from Login to Register
+openRegisterFromLogin?.addEventListener('click', function(event) {
+  event.preventDefault();
+  closeModal(loginModal);
+  showModal(registerModal);
+});
+
+// Show Register Modal when register link is clicked
+registerLink.addEventListener('click', function (event) {
+  event.preventDefault();
+  showModal(registerModal);
+});
+
+// Close Register Modal when close button is clicked
+closeRegisterModal.addEventListener('click', function () {
+  closeModal(registerModal);
+});
+
+// Navigate from Register to Login
+openLoginFromRegister?.addEventListener('click', function (event) {
+  event.preventDefault();
+  closeModal(registerModal);
+  showModal(loginModal);
 });
 
 // Handle form submission (optional, if you want to submit the form)
@@ -200,12 +232,6 @@ loginForm.addEventListener('submit', function(event) {
     } else {
         alert('Please enter both username and password.');
     }
-});
-// Navigate from Login to Register
-openRegisterFromLogin?.addEventListener('click', function (event) {
-  event.preventDefault();
-  closeModal(loginModal);
-  showModal(registerModal);
 });
 
  // Checkbox code
@@ -233,38 +259,6 @@ function lsRememberMe() {
   }
 }
 }
-
-// Register Modal Functionality
-const registerLink = document.getElementById('registerLink');
-const registerModal = document.getElementById('registerModal');
-const closeRegisterModal = document.getElementById('closeRegisterModal');
-const openLoginFromRegister = document.getElementById('openLoginFromRegister');
-
-// Open Register Modal
-registerLink.addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent default link behavior
-    registerModal.style.display = 'block'; // Show modal
-});
-
-// Close Register Modal (via close button)
-closeRegisterModal.addEventListener('click', function () {
-    registerModal.style.display = 'none'; // Hide modal
-});
-
-// Close Register Modal (when clicking outside the modal content)
-window.addEventListener('click', function (event) {
-    if (event.target === registerModal) {
-        registerModal.style.display = 'none'; // Hide modal
-    }
-});
-// Navigate from Register to Login
-openLoginFromRegister?.addEventListener('click', function (event) {
-  event.preventDefault();
-  closeModal(registerModal);
-  showModal(loginModal);
-});
-
-
 
 //Lazy Loading Code
 
