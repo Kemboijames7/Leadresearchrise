@@ -171,9 +171,10 @@ const loginLink = document.getElementById('loginLink');
 const loginModal = document.getElementById('loginModal');
 const closeBtn = document.getElementById('closeBtn');
 const loginForm = document.getElementById('loginFormContent');
+const openRegisterFromLogin = document.getElementById('openRegisterFromLogin');
 
 // Show the modal when the login link is clicked
-loginLink.addEventListener('click', function(event) {
+loginLink?.addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default link action
     loginModal.style.display = 'block';
    
@@ -199,6 +200,12 @@ loginForm.addEventListener('submit', function(event) {
     } else {
         alert('Please enter both username and password.');
     }
+});
+// Navigate from Login to Register
+openRegisterFromLogin?.addEventListener('click', function (event) {
+  event.preventDefault();
+  closeModal(loginModal);
+  showModal(registerModal);
 });
 
  // Checkbox code
@@ -231,6 +238,7 @@ function lsRememberMe() {
 const registerLink = document.getElementById('registerLink');
 const registerModal = document.getElementById('registerModal');
 const closeRegisterModal = document.getElementById('closeRegisterModal');
+const openLoginFromRegister = document.getElementById('openLoginFromRegister');
 
 // Open Register Modal
 registerLink.addEventListener('click', function (event) {
@@ -249,6 +257,14 @@ window.addEventListener('click', function (event) {
         registerModal.style.display = 'none'; // Hide modal
     }
 });
+// Navigate from Register to Login
+openLoginFromRegister?.addEventListener('click', function (event) {
+  event.preventDefault();
+  closeModal(registerModal);
+  showModal(loginModal);
+});
+
+
 
 //Lazy Loading Code
 
