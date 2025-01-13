@@ -82,25 +82,60 @@
   <div id="top-links" class="hidden-sm hidden-xs"> 
                 <a href="tel:+02076924300" class="no-button">020 7692 4300</a>
                 <a href="#" class="button third" id="loginLink">Login</a>
+
                  <!-- Login Modal (Initially Hidden) -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span id="closeBtn" class="close-btn">&times;</span>
             <h2>Login Form</h2>
-            <form id="loginFormContent">
+            <form action="POST" id="loginFormContent">
                 <label for="username">Username:</label>
-                <input type="text" id="username" placeholder="Enter your username" required>
-                <br><br>
+                <input class="inputBox" type="text" id="username" placeholder="Enter your username" required>
+                
                 <label for="password">Password:</label>
-                <input type="password" id="password" placeholder="Enter your password" required>
-                <br><br>
+                <input class="inputBox" type="password" id="password" placeholder="Enter your password" required>
+                <input class="inputBox" type="checkbox" value="lsRememberMe" id="rememberMe"> <label for="rememberMe">Remember me</label>
+                <br>
                 <button type="submit" id="submitButton">Submit</button>
+                <cite><a href="#">forgot password</a></cite>
             </form>
+            <p>Not registered?
+                <a href="#" style="text-decoration: none;">
+                    Create an account
+                </a>
+            </p>
         </div>
     </div>
 
-                <a href="/users/register/new/registration" class="button third">Register</a>
-              
+    <a href="#" id="registerLink" class="button third">Register</a>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeRegisterModal">&times;</span>
+            <h2>Register</h2>
+            <form action="POST" id="registerFormContent">
+                <label for="regUsername">Username:</label>
+                <input class="inputBox" type="text" id="regUsername" placeholder="Enter your username" required>
+                
+                <label for="email">Email:</label>
+                <input class="inputBox" type="email" id="email" placeholder="Enter your email" required>
+                
+                <label for="regPassword">Password:</label>
+                <input class="inputBox" type="password" id="regPassword" placeholder="Enter your password" required>
+                
+                <label for="confirmPassword">Confirm Password:</label>
+                <input class="inputBox" type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                
+                <input type="submit" value="Register">
+            </form>
+            <p>Already have an account? 
+                <a href="#" id="loginLinkFromRegister" style="text-decoration: none;">Login here</a>
+            </p>
+        </div>
+    </div>
+    
+ 
              </div>  
               
             </div>
@@ -339,6 +374,7 @@
     </section>
 
     <section id="boxes">
+        <h6><bold>Comments Section</bold></h6>
     <form id="commentForm">
         <label for="commentText">Leave a Comment:</label>
         <textarea id="commentText" placeholder="Write your comment here..." required></textarea>
@@ -347,11 +383,12 @@
       
       <!-- Comment Section -->
       <div id="commentsSection">
+        <br>
         <h3>Comments:</h3>
       </div>
 
       <div id="chatbot">
-        <h1>Chatbot</h1>
+        <h6><bold>Chatbot</bold></h6>
         <label for="userInput">Type something for the chatbot:</label>
         <br>
         <input type="text" id="userInput" placeholder="e.g., Chatbot, help me!">
@@ -371,7 +408,7 @@
         <span class="scroll_top icon-visible" style="display: inline;">
             <i class="ri-arrow-up-s-line"></i> 
         </span>
-      <div id="timeFooter">  <p> 2024 &copy;  Kemich Designs. LEADRESEARCHRISE. All Rights Reserved. | <span id="time"></span></p> 
+      <div id="timeFooter">  <p> 2025 &copy;  Kemich Designs. LEADRESEARCHRISE. All Rights Reserved. | <span id="time"></span></p> 
     
     </div>
 

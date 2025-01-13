@@ -176,7 +176,7 @@ const loginForm = document.getElementById('loginFormContent');
 loginLink.addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default link action
     loginModal.style.display = 'block';
-   console.log('clicked')
+   
 });
 
 // Hide the modal when the close button (X) is clicked
@@ -201,7 +201,55 @@ loginForm.addEventListener('submit', function(event) {
     }
 });
 
- 
+ // Checkbox code
+function checkBoxx (){
+const rmCheck = document.getElementById("rememberMe"),
+usernameInput = document.getElementById("username");
+
+if (localStorage.checkbox && localStorage.checkbox !== "") {
+  rmCheck.setAttribute("checked", "checked");
+  usernameInput.value = localStorage.username;
+  console.log("cvalue")
+} else {
+  rmCheck.removeAttribute("checked");
+  usernameInput.value = "";
+}
+
+function lsRememberMe() {
+  if (rmCheck.checked && usernameInput.value !== "") {
+    localStorage.username = usernameInput.value;
+    localStorage.checkbox = rmCheck.value;
+    console.log("checkbox")
+  } else {
+    localStorage.username = "";
+    localStorage.checkbox = "";
+  }
+}
+}
+
+// Register Modal Functionality
+const registerLink = document.getElementById('registerLink');
+const registerModal = document.getElementById('registerModal');
+const closeRegisterModal = document.getElementById('closeRegisterModal');
+
+// Open Register Modal
+registerLink.addEventListener('click', function (event) {
+    event.preventDefault(); // Prevent default link behavior
+    registerModal.style.display = 'block'; // Show modal
+});
+
+// Close Register Modal (via close button)
+closeRegisterModal.addEventListener('click', function () {
+    registerModal.style.display = 'none'; // Hide modal
+});
+
+// Close Register Modal (when clicking outside the modal content)
+window.addEventListener('click', function (event) {
+    if (event.target === registerModal) {
+        registerModal.style.display = 'none'; // Hide modal
+    }
+});
+
 //Lazy Loading Code
 
 const lazyImages = document.querySelectorAll('img[data-src]');
