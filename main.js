@@ -235,30 +235,87 @@ loginForm.addEventListener('submit', function(event) {
 });
 
  // Checkbox code
-function checkBoxx (){
-const rmCheck = document.getElementById("rememberMe"),
-usernameInput = document.getElementById("username");
+ function checkBoxx() {
+  const rmCheck = document.getElementById("rememberMe");
+  const usernameInput = document.getElementById("username");
 
-if (localStorage.checkbox && localStorage.checkbox !== "") {
-  rmCheck.setAttribute("checked", "checked");
-  usernameInput.value = localStorage.username;
-  console.log("cvalue")
-} else {
-  rmCheck.removeAttribute("checked");
-  usernameInput.value = "";
-}
-
-function lsRememberMe() {
-  if (rmCheck.checked && usernameInput.value !== "") {
-    localStorage.username = usernameInput.value;
-    localStorage.checkbox = rmCheck.value;
-    console.log("checkbox")
+  // Load saved username and checkbox state on page load
+  if (localStorage.getItem("checkbox") === "true") {
+      rmCheck.checked = true; // Set the checkbox as checked
+      usernameInput.value = localStorage.getItem("username"); // Load the saved username
+      console.log("Loaded saved username and checkbox state");
   } else {
-    localStorage.username = "";
-    localStorage.checkbox = "";
+      rmCheck.checked = false;
+      usernameInput.value = "";
+  }
+
+  // Save state when the checkbox or input changes
+  rmCheck.addEventListener("change", saveState);
+  usernameInput.addEventListener("input", saveState);
+
+  function saveState() {
+      if (rmCheck.checked && usernameInput.value !== "") {
+          localStorage.setItem("username", usernameInput.value);
+          localStorage.setItem("checkbox", "true");
+          console.log("Saved username and checkbox state");
+      } else {
+          localStorage.removeItem("username");
+          localStorage.setItem("checkbox", "false");
+          console.log("Cleared username or unchecked checkbox");
+      }
   }
 }
+
+function handleRegisterForm() {
+  const regUsernameInput = document.getElementById("regUsername");
+  const emailInput = document.getElementById("email");
+  const regPasswordInput = document.getElementById("regPassword");
+  const confirmPasswordInput = document.getElementById("confirmPassword");
+  const registerForm = document.getElementById("registerFormContent");
+  const registerModal = document.getElementById("registerModal");
+
+  // Load saved registration details on page load
+  regUsernameInput.value = localStorage.getItem("regUsername") || "";
+  emailInput.value = localStorage.getItem("email") || "";
+
+  // Save registration details when inputs change
+  regUsernameInput.addEventListener("input", saveRegistrationDetails);
+  emailInput.addEventListener("input", saveRegistrationDetails);
+
+  function saveRegistrationDetails() {
+      localStorage.setItem("regUsername", regUsernameInput.value);
+      localStorage.setItem("email", emailInput.value);
+      console.log("Registration details saved");
+  }
+
+  // Clear registration details on successful form submission
+  registerForm.addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent default submission for testing
+
+      // Clear local storage
+      localStorage.removeItem("regUsername");
+      localStorage.removeItem("email");
+
+      // Clear form fields
+      regUsernameInput.value = "";
+      emailInput.value = "";
+      regPasswordInput.value = "";
+      confirmPasswordInput.value = "";
+
+      // Hide the register modal
+      registerModal.style.display = "none";
+
+      console.log("Registration successful! Fields cleared and modal closed.");
+      alert("Registration successful!");
+  });
 }
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  handleRegisterForm();
+  checkBoxx(); // Ensure both functions are initialized
+});
+
 
 //Lazy Loading Code
 
@@ -274,7 +331,6 @@ const observer = new IntersectionObserver((entries, observer) => {
 });
 
 lazyImages.forEach(image => observer.observe(image));
-
 
 
 
