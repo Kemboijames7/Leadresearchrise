@@ -282,9 +282,25 @@ function handleRegisterForm() {
   regUsernameInput.addEventListener("input", saveRegistrationDetails);
   emailInput.addEventListener("input", saveRegistrationDetails);
 
+      // Validate that passwords match
+      const password = regPasswordInput.value.trim();
+      const confirmPassword = confirmPasswordInput.value.trim();
+
+      if (password !== confirmPassword) {
+          passwordError.style.display = "block"; // Show error message
+          passwordError.textContent = "Passwords do not match. Please try again.";
+          return; // Stop form submission if passwords don't match
+      } else {
+          passwordError.style.display = "none"; // Hide error message if matches
+          console.log("Passwords match");
+      }
+
+
+
   function saveRegistrationDetails() {
-      localStorage.setItem("regUsername", regUsernameInput.value);
-      localStorage.setItem("email", emailInput.value);
+    // Save to localStorage if needed
+    localStorage.setItem("regUsername", regUsernameInput.value.trim());
+    localStorage.setItem("email", emailInput.value.trim());
       console.log("Registration details saved");
   }
 
@@ -309,6 +325,8 @@ function handleRegisterForm() {
       alert("Registration successful!");
   });
 }
+
+
 
 
 document.addEventListener("DOMContentLoaded", () => {

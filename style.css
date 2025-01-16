@@ -463,6 +463,10 @@ h6 {
     }
 }
 
+#passwordError{
+    color: red; 
+    display: block;
+}
 
 
 /* Grid Layout */
