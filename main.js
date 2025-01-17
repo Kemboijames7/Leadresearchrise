@@ -266,6 +266,29 @@ loginForm.addEventListener('submit', function(event) {
   }
 }
 
+function handlePasswordValidation() {
+  const regPasswordInput = document.getElementById("regPassword");
+  const confirmPasswordInput = document.getElementById("confirmPassword");
+  const passwordError = document.getElementById("passwordError");
+
+  // Attach an input event listener to both password fields
+  confirmPasswordInput.addEventListener("input", validatePasswords);
+  regPasswordInput.addEventListener("input", validatePasswords);
+
+  function validatePasswords() {
+      const password = regPasswordInput.value.trim();
+      const confirmPassword = confirmPasswordInput.value.trim();
+
+      if (password !== confirmPassword) {
+          passwordError.style.display = "block"; // Show error message
+          passwordError.textContent = "Passwords do not match. Please try again.";
+      } else {
+          passwordError.style.display = "none"; // Hide error message
+      }
+  }
+}
+
+
 function handleRegisterForm() {
   const regUsernameInput = document.getElementById("regUsername");
   const emailInput = document.getElementById("email");
@@ -282,21 +305,7 @@ function handleRegisterForm() {
   regUsernameInput.addEventListener("input", saveRegistrationDetails);
   emailInput.addEventListener("input", saveRegistrationDetails);
 
-      // Validate that passwords match
-      const password = regPasswordInput.value.trim();
-      const confirmPassword = confirmPasswordInput.value.trim();
-
-      if (password !== confirmPassword) {
-          passwordError.style.display = "block"; // Show error message
-          passwordError.textContent = "Passwords do not match. Please try again.";
-          return; // Stop form submission if passwords don't match
-      } else {
-          passwordError.style.display = "none"; // Hide error message if matches
-          console.log("Passwords match");
-      }
-
-
-
+    
   function saveRegistrationDetails() {
     // Save to localStorage if needed
     localStorage.setItem("regUsername", regUsernameInput.value.trim());
@@ -331,7 +340,8 @@ function handleRegisterForm() {
 
 document.addEventListener("DOMContentLoaded", () => {
   handleRegisterForm();
-  checkBoxx(); // Ensure both functions are initialized
+  checkBoxx(); 
+  handlePasswordValidation();
 });
 
 
