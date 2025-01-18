@@ -234,6 +234,55 @@ loginForm.addEventListener('submit', function(event) {
     }
 });
 
+// Get modal elements
+const forgotPasswordModal = document.getElementById('forgotPasswordModal');
+const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+const closeForgotPasswordModal = document.getElementById('closeForgotPasswordModal');
+const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+const forgotPasswordMessage = document.getElementById('forgotPasswordMessage');
+
+// Open "Forgot Password" modal
+forgotPasswordLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    forgotPasswordModal.style.display = 'block';
+});
+
+// Close "Forgot Password" modal
+closeForgotPasswordModal.addEventListener('click', () => {
+    forgotPasswordModal.style.display = 'none';
+    forgotPasswordMessage.textContent = '';
+});
+
+// Handle "Forgot Password" form submission
+forgotPasswordForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const email = document.getElementById('forgotEmail').value;
+
+    try {
+        const response = await fetch('/api/forgot-password', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email }),
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            forgotPasswordMessage.textContent = result.message || 'Reset code sent to your email.';
+            forgotPasswordMessage.style.color = 'green';
+        } else {
+            forgotPasswordMessage.textContent = result.message || 'An error occurred.';
+            forgotPasswordMessage.style.color = 'red';
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        forgotPasswordMessage.textContent = 'Something went wrong. Please try again.';
+        forgotPasswordMessage.style.color = 'red';
+    }
+});
+
+
+
+
  // Checkbox code
  function checkBoxx() {
   const rmCheck = document.getElementById("rememberMe");
