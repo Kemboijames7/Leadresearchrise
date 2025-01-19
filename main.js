@@ -235,23 +235,36 @@ loginForm.addEventListener('submit', function(event) {
 });
 
 // Get modal elements
-const forgotPasswordModal = document.getElementById('forgotPasswordModal');
-const forgotPasswordLink = document.getElementById('forgotPasswordLink');
-const closeForgotPasswordModal = document.getElementById('closeForgotPasswordModal');
+
 const forgotPasswordForm = document.getElementById('forgotPasswordForm');
 const forgotPasswordMessage = document.getElementById('forgotPasswordMessage');
 
-// Open "Forgot Password" modal
-forgotPasswordLink.addEventListener('click', (event) => {
-    event.preventDefault();
-    forgotPasswordModal.style.display = 'block';
+document.addEventListener('DOMContentLoaded', () => {
+  const forgotPasswordModal = document.getElementById('forgotPasswordModal');
+  const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+  const closeForgotPasswordModal = document.getElementById('closeForgotPasswordModal');
+
+  console.log('forgotPasswordModal:', forgotPasswordModal);
+  console.log('forgotPasswordLink:', forgotPasswordLink);
+  console.log('closeForgotPasswordModal:', closeForgotPasswordModal);
+
+  if (forgotPasswordModal && forgotPasswordLink && closeForgotPasswordModal) {
+      forgotPasswordLink.addEventListener('click', (event) => {
+          event.preventDefault();
+          console.log('Forgot Password link clicked');
+          forgotPasswordModal.style.display = 'block';
+      });
+
+      closeForgotPasswordModal.addEventListener('click', () => {
+          console.log('Close button clicked');
+          forgotPasswordModal.style.display = 'none';
+      });
+  } else {
+      console.error('One or more elements are missing from the DOM.');
+  }
 });
 
-// Close "Forgot Password" modal
-closeForgotPasswordModal.addEventListener('click', () => {
-    forgotPasswordModal.style.display = 'none';
-    forgotPasswordMessage.textContent = '';
-});
+
 
 // Handle "Forgot Password" form submission
 forgotPasswordForm.addEventListener('submit', async (event) => {
