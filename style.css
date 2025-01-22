@@ -325,6 +325,20 @@ h6 {
     
 }
 
+
+
+
+#forgotPasswordModal {
+    display: none;
+    /* other styles */
+}
+
+#forgotPasswordModal.visible {
+    display: block;
+    /* other styles */
+}
+
+
 /* Close Button */
 .close-btn {
     color: #aaa;

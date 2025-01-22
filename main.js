@@ -244,9 +244,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const forgotPasswordLink = document.getElementById('forgotPasswordLink');
   const closeForgotPasswordModal = document.getElementById('closeForgotPasswordModal');
 
-  console.log('forgotPasswordModal:', forgotPasswordModal);
-  console.log('forgotPasswordLink:', forgotPasswordLink);
-  console.log('closeForgotPasswordModal:', closeForgotPasswordModal);
+  if (forgotPasswordLink === null) {
+    console.error('#forgotPasswordLink is missing. Check your HTML.');
+}
+
 
   if (forgotPasswordModal && forgotPasswordLink && closeForgotPasswordModal) {
       forgotPasswordLink.addEventListener('click', (event) => {
@@ -269,7 +270,13 @@ document.addEventListener('DOMContentLoaded', () => {
 // Handle "Forgot Password" form submission
 forgotPasswordForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-    const email = document.getElementById('forgotEmail').value;
+    const email = document.getElementById('forgotEmail').value.trim();
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      forgotPasswordMessage.textContent = 'Please enter a valid email address.';
+      forgotPasswordMessage.style.color = 'red';
+      return;
+  }
 
     try {
         const response = await fetch('/api/forgot-password', {
@@ -279,20 +286,22 @@ forgotPasswordForm.addEventListener('submit', async (event) => {
         });
 
         const result = await response.json();
-        if (response.ok) {
-            forgotPasswordMessage.textContent = result.message || 'Reset code sent to your email.';
-            forgotPasswordMessage.style.color = 'green';
-        } else {
-            forgotPasswordMessage.textContent = result.message || 'An error occurred.';
-            forgotPasswordMessage.style.color = 'red';
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        forgotPasswordMessage.textContent = 'Something went wrong. Please try again.';
-        forgotPasswordMessage.style.color = 'red';
-    }
-});
+       
+        if (!response.ok) {
+          console.error('Error response:', result);
+          forgotPasswordMessage.textContent = result.message || 'An error occurred. Please check your input.';
+          forgotPasswordMessage.style.color = 'red';
+          return;
+      }
 
+      forgotPasswordMessage.textContent = result.message || 'Reset code sent to your email.';
+      forgotPasswordMessage.style.color = 'green';
+  } catch (error) {
+      console.error('Network or server error:', error);
+      forgotPasswordMessage.textContent = 'Something went wrong. Please try again.';
+      forgotPasswordMessage.style.color = 'red';
+  }
+});
 
 
 
@@ -305,7 +314,7 @@ forgotPasswordForm.addEventListener('submit', async (event) => {
   if (localStorage.getItem("checkbox") === "true") {
       rmCheck.checked = true; // Set the checkbox as checked
       usernameInput.value = localStorage.getItem("username"); // Load the saved username
-      console.log("Loaded saved username and checkbox state");
+      // console.log("Loaded saved username and checkbox state");
   } else {
       rmCheck.checked = false;
       usernameInput.value = "";
