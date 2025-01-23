@@ -299,6 +299,23 @@ h6 {
     font-size: 16px;
 }
 
+.progress-container {
+    width: 50%;
+    background-color: #667c98;
+    border-radius: 8px;
+    height: 10px;
+    
+  }
+  
+  .progress-bar {
+    height: 10px;
+    background-color: #966083;
+    border-radius: 8px;
+    /* position: absolute;
+    top: 80px; */
+  }
+  
+
 
 /* The Modal */
 .modal {

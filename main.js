@@ -164,6 +164,64 @@ if (localStorage.getItem('theme') === 'dark' && isDarkModeFeatureEnabled) {
   body.classList.remove('dark-mode');
 }
 
+function saveUserData(key, value) {
+  const userData = JSON.parse(localStorage.getItem('userData')) || {};
+  userData[key] = value;
+  localStorage.setItem('userData', JSON.stringify(userData));
+}
+
+function getUserData(key) {
+  const userData = JSON.parse(localStorage.getItem('userData')) || {};
+  return userData[key] || null;
+}
+
+const registerFormContent = document.getElementById('registerFormContent');
+
+registerFormContent.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const currentStage = getCurrentStage();
+  saveUserData(currentStage, formData);
+  loadNextStage();
+});
+
+function loadNextStage() {
+  const currentStage = getCurrentStage();
+  switch (currentStage) {
+    case 1:
+      showStageTwoFields();
+      break;
+    case 2:
+      showStageThreeFields();
+      break;
+    // Add more stages if needed
+  }
+}
+
+function renderProfileCompletion() {
+  const userData = JSON.parse(localStorage.getItem('userData'));
+  const completionPercentage = calculateCompletionPercentage(userData);
+  document.querySelector('.progress-bar').style.width = `${completionPercentage}%`;
+}
+
+function calculateCompletionPercentage(userData) {
+  const totalFields = 5; // Total fields to be completed
+  const completedFields = Object.keys(userData).length;
+  return (completedFields / totalFields) * 100;
+}
+
+async function updateProfile(data) {
+  const response = await fetch('/api/update-profile', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+  const result = await response.json();
+  console.log(result.message);
+}
+
+
 //SIGN IN AND REGISTER
 
 // Get the elements
