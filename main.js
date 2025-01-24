@@ -186,6 +186,7 @@ registerFormContent.addEventListener('submit', (e) => {
 
 function loadNextStage() {
   const currentStage = getCurrentStage();
+
   switch (currentStage) {
     case 1:
       showStageTwoFields();
@@ -193,9 +194,18 @@ function loadNextStage() {
     case 2:
       showStageThreeFields();
       break;
-    // Add more stages if needed
+    case 3:
+      showStageFourFields(); // Example for stage 4
+      break;
+    case 4:
+      finalizeRegistration(); // Final stage
+      break;
+    default:
+      console.error(`Unknown stage: ${currentStage}`);
+      alert('An error occurred. Please restart the registration process.');
   }
 }
+
 
 function renderProfileCompletion() {
   const userData = JSON.parse(localStorage.getItem('userData'));
