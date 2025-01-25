@@ -186,25 +186,50 @@ registerFormContent.addEventListener('submit', (e) => {
 
 function loadNextStage() {
   const currentStage = getCurrentStage();
+  
+  const stageFunctions = {
+    1: showStageTwoFields,
+    2: showStageThreeFields,
+    3: showStageFourFields,
+    4: finalizeRegistration,
+  };
 
-  switch (currentStage) {
-    case 1:
-      showStageTwoFields();
-      break;
-    case 2:
-      showStageThreeFields();
-      break;
-    case 3:
-      showStageFourFields(); // Example for stage 4
-      break;
-    case 4:
-      finalizeRegistration(); // Final stage
-      break;
-    default:
-      console.error(`Unknown stage: ${currentStage}`);
-      alert('An error occurred. Please restart the registration process.');
+  if (stageFunctions[currentStage]) {
+    stageFunctions[currentStage]();
+  } else {
+    console.error(`Unknown stage: ${currentStage}`);
+    alert('An error occurred. Please restart the registration process.');
   }
 }
+
+
+function validateCurrentStageFields(stage) {
+  // Add validation logic for each stage
+  if (stage === 1) {
+    return validateStageOneFields();
+  } else if (stage === 2) {
+    return validateStageTwoFields();
+  }
+  // Add more validation logic for other stages as needed
+  return true;
+}
+
+function finalizeRegistration() {
+  // Save all user data to the server or localStorage
+  saveUserDataToServer();
+
+  // Show confirmation message
+  alert('Registration complete! Thank you.');
+
+  // Optionally redirect to another page
+  window.location.href = '/thank-you.html';
+}
+
+function saveUserDataToServer() {
+  // Simulate sending data to a server
+  console.log('User data saved:', formData);
+}
+
 
 
 function renderProfileCompletion() {
