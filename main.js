@@ -230,6 +230,25 @@ function saveUserDataToServer() {
   console.log('User data saved:', formData);
 }
 
+function goBackToPreviousStage() {
+  const currentStage = getCurrentStage();
+  const previousStage = Math.max(1, currentStage - 1);
+
+  switch (previousStage) {
+    case 1:
+      showStageOneFields();
+      break;
+    case 2:
+      showStageTwoFields();
+      break;
+    // Add cases for earlier stages
+  }
+}
+
+function restartRegistration() {
+  resetFormData();
+  showStageOneFields();
+}
 
 
 function renderProfileCompletion() {
