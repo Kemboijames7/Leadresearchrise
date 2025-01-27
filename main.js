@@ -278,6 +278,41 @@ async function updateProfile(data) {
 
 //SIGN IN AND REGISTER
 
+// Get references to the form and profile area
+const loginFormContent = document.getElementById('loginFormContent');
+const profileArea = document.getElementById('profileArea');
+const profileUsername = document.getElementById('profileUsername');
+const profileIcon = document.getElementById('profileIcon');
+
+// Mock user data (replace this with actual API data or validation)
+const mockUsers = {
+    user1: { username: 'JohnDoe', profilePic: 'https://via.placeholder.com/50' },
+    user2: { username: 'JaneDoe', profilePic: 'https://via.placeholder.com/50?text=JD' },
+};
+
+// Handle login form submission
+loginFormContent.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const usernameInput = document.getElementById('username').value;
+
+    // Mock login validation
+    const user = Object.values(mockUsers).find(u => u.username === usernameInput);
+
+    if (user) {
+        // Update profile area with user data
+        profileUsername.textContent = `Welcome, ${user.username}!`;
+        profileIcon.src = user.profilePic;
+        profileArea.classList.remove('hidden'); // Show profile area
+
+        // Hide the login form
+        loginFormContent.style.display = 'none';
+    } else {
+        alert('Invalid username or password. Please try again.');
+    }
+});
+
+
+
 // Get the elements
 const loginLink = document.getElementById('loginLink');
 const loginModal = document.getElementById('loginModal');
