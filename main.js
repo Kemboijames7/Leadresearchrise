@@ -810,4 +810,15 @@ document.getElementById('chatBot').addEventListener('click', async () => {
       }
     }
     
-   
+    document.getElementById('searchBar').addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      const results = []; // Mock data or filter logic for actual data
+  
+      if (query) {
+          results.push(`Result for "${query}"`);
+      }
+  
+      const searchResults = document.getElementById('searchResults');
+      searchResults.innerHTML = results.map((result) => `<p>${result}</p>`).join('');
+  });
+  
