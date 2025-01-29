@@ -108,6 +108,20 @@ window.customTranslateElementInit = function() {
     document.body.appendChild(frButton);
 }
 
+function showNotification(message, type = 'success') {
+  const notificationBar = document.getElementById('notificationBar');
+  notificationBar.className = type === 'success' ? 'success' : 'error';
+  document.getElementById('notificationMessage').textContent = message;
+  notificationBar.classList.remove('hidden');
+
+  setTimeout(() => {
+      notificationBar.classList.add('hidden');
+  }, 3000); // Auto-hide after 3 seconds
+}
+
+
+
+
 // Call this function once the page loads
 window.onload = function() {
     window.customTranslateElementInit();
