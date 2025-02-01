@@ -303,6 +303,11 @@ document.getElementById('fileUpload').addEventListener('change', (e) => {
 });
 
 
+document.getElementById('viewProfile').addEventListener('click', () => {
+  alert('Redirecting to Profile Page...');
+  window.location.href = '/profile'; // Example navigation
+});
+
 
 //SIGN IN AND REGISTER
 
