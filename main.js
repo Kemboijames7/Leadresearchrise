@@ -289,24 +289,31 @@ async function updateProfile(data) {
   console.log(result.message);
 }
 
+  // Toggle Profile Section
+  document.getElementById('viewProfile').addEventListener('click', () => {
+    const profileSection = document.getElementById('profileSection');
+    profileSection.style.display = profileSection.style.display === 'none' ? 'block' : 'none';
+});
+
+// Profile Picture Upload
 document.getElementById('fileUpload').addEventListener('change', (e) => {
-  const file = e.target.files[0];
-  if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-          const preview = document.getElementById('preview');
-          preview.src = event.target.result;
-          preview.style.display = 'block';
-      };
-      reader.readAsDataURL(file);
-  }
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const preview = document.getElementById('preview');
+            preview.src = event.target.result;
+            preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    }
 });
 
 
-document.getElementById('viewProfile').addEventListener('click', () => {
-  alert('Redirecting to Profile Page...');
-  window.location.href = '/profile'; // Example navigation
-});
+// document.getElementById('viewProfile').addEventListener('click', () => {
+//   alert('Redirecting to Profile Page...');
+//   window.location.href = '/profile'; // Example navigation
+// });
 
 
 //SIGN IN AND REGISTER

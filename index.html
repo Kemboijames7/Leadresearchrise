@@ -45,10 +45,34 @@
 <div id="notificationBar" class="hidden">
     <p id="notificationMessage"></p>
 </div>
-<input type="file" id="fileUpload" accept="image/*" />
-<img id="preview" src="#" alt="Preview" style="display:none;" />
+         
+<!-- Profile Button in Header -->
+<header>
+<button id="viewProfile" class="profile-btn">👤</button>
+</header>
 
-                    
+<!-- Profile Section (Initially Hidden) -->
+<div id="profileSection" style="display: none;">
+    <h2>Update Profile</h2>
+
+    <!-- Profile Picture Upload -->
+    <label for="fileUpload">Choose a profile picture:</label>
+    <input type="file" id="fileUpload" accept="image/*" />
+    <img id="preview" src="#" alt="Preview" style="display:none; width: 150px; height: 150px; border-radius: 50%;" />
+
+     <!-- Dashboard Section -->
+     <div id="dashboard">
+        <h2>Welcome Back, <span id="dashboardUsername">User</span>!</h2>
+        <p>Last Login: <span id="lastLogin">N/A</span></p>
+
+        <div id="progressContainer">
+            <label>Profile Completion</label>
+            <progress id="profileProgress" value="60" max="100"></progress>
+        </div>
+    </div>
+</div>
+
+
             <div class="container">
                 <div id="header-logo">
                     <a href="#">Leadresearchrise</a>
@@ -183,15 +207,6 @@
         </nav>  
         </header>
 
-        <div id="dashboard">
-            <h2>Welcome Back, <span id="dashboardUsername">User</span>!</h2>
-            <p>Last Login: <span id="lastLogin">N/A</span></p>
-            <div id="progressContainer">
-                <label>Profile Completion</label>
-                <progress id="profileProgress" value="60" max="100"></progress>
-            </div>
-            <button id="viewProfile">View Profile</button>
-        </div>
         
 
 

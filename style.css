@@ -226,6 +226,46 @@ padding: 2px;
     margin: 0 0.4rem;
 }
 
+header {
+    position: relative;
+    display: flex;
+    justify-content: flex-end; /* Align to the right */
+    padding: 10px 20px;
+    background: #f8f9fa;
+}
+
+.profile-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.profile-btn:hover {
+    background: #0056b3;
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: 10px; /* Below the button */
+    right: 10px; /* Align to right */
+    background: white;
+    padding: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: none; /* Hidden by default */
+    width: 250px;
+}
+
+#preview {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: block;
+    margin-top: 10px;
+}
 
 
 .navbar ul {
