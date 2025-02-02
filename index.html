@@ -47,9 +47,9 @@
 </div>
          
 <!-- Profile Button in Header -->
-<header>
+<span class="userId">
 <button id="viewProfile" class="profile-btn">👤</button>
-</header>
+</span>
 
 <!-- Profile Section (Initially Hidden) -->
 <div id="profileSection" style="display: none;">
@@ -59,6 +59,9 @@
     <label for="fileUpload">Choose a profile picture:</label>
     <input type="file" id="fileUpload" accept="image/*" />
     <img id="preview" src="#" alt="Preview" style="display:none; width: 150px; height: 150px; border-radius: 50%;" />
+    <button id="saveBtn">Save</button>
+    <p id="statusMessage"></p>
+
 
      <!-- Dashboard Section -->
      <div id="dashboard">

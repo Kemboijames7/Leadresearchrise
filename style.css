@@ -226,12 +226,12 @@ padding: 2px;
     margin: 0 0.4rem;
 }
 
-header {
+header .userId  {
     position: relative;
-    display: flex;
-    justify-content: flex-end; /* Align to the right */
-    padding: 10px 20px;
-    background: #f8f9fa;
+    /* display: flex;
+    justify-content: flex-end;   */
+    padding:0;
+    background: #0e70d2;
 }
 
 .profile-btn {
@@ -242,6 +242,8 @@ header {
     cursor: pointer;
     border-radius: 5px;
 }
+
+
 
 .profile-btn:hover {
     background: #0056b3;

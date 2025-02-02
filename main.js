@@ -295,6 +295,13 @@ async function updateProfile(data) {
     profileSection.style.display = profileSection.style.display === 'none' ? 'block' : 'none';
 });
 
+ // Load saved image from localStorage (if available)
+ const savedImage = localStorage.getItem("profilePic");
+ if (savedImage) {
+     preview.src = savedImage;
+     preview.style.display = "block";
+ }
+
 // Profile Picture Upload
 document.getElementById('fileUpload').addEventListener('change', (e) => {
     const file = e.target.files[0];
@@ -308,6 +315,18 @@ document.getElementById('fileUpload').addEventListener('change', (e) => {
         reader.readAsDataURL(file);
     }
 });
+
+    // Save image to localStorage
+    saveBtn.addEventListener("click", function () {
+      if (preview.src) {
+          localStorage.setItem("profilePic", preview.src);
+          statusMessage.textContent = "Profile picture saved!";
+          statusMessage.style.color = "green";
+      } else {
+          statusMessage.textContent = "Please choose an image first.";
+          statusMessage.style.color = "red";
+      }
+  });
 
 
 // document.getElementById('viewProfile').addEventListener('click', () => {
