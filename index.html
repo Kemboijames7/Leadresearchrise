@@ -7,6 +7,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="style.css">
+    <!-- Cropper.js CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet">
+
+<!-- Cropper.js JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+
 </head>
 <body>
 
@@ -58,9 +64,19 @@
     <!-- Profile Picture Upload -->
     <label for="fileUpload">Choose a profile picture:</label>
     <input type="file" id="fileUpload" accept="image/*" />
+
+    <!-- Cropping Area -->
+<div id="cropContainer" style="display: none;">
+    <img id="cropImage" style="max-width: 100%;">
+    <button id="cropBtn">Crop & Save</button>
+</div>
+
+<!-- Profile Picture Preview -->
     <img id="preview" src="#" alt="Preview" style="display:none; width: 150px; height: 150px; border-radius: 50%;" />
-    <button id="saveBtn">Save</button>
+    <button id="removeBtn">Remove Profile Picture</button>
+
     <p id="statusMessage"></p>
+    
 
 
      <!-- Dashboard Section -->

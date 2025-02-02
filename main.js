@@ -294,6 +294,10 @@ async function updateProfile(data) {
     const profileSection = document.getElementById('profileSection');
     profileSection.style.display = profileSection.style.display === 'none' ? 'block' : 'none';
 });
+const cropContainer = document.getElementById("cropContainer");
+const cropImage = document.getElementById("cropImage");
+const cropBtn = document.getElementById("cropBtn");
+
 
  // Load saved image from localStorage (if available)
  const savedImage = localStorage.getItem("profilePic");
@@ -301,6 +305,7 @@ async function updateProfile(data) {
      preview.src = savedImage;
      preview.style.display = "block";
  }
+ let cropper; 
 
 // Profile Picture Upload
 document.getElementById('fileUpload').addEventListener('change', (e) => {
@@ -308,25 +313,73 @@ document.getElementById('fileUpload').addEventListener('change', (e) => {
     if (file) {
         const reader = new FileReader();
         reader.onload = (event) => {
-            const preview = document.getElementById('preview');
-            preview.src = event.target.result;
-            preview.style.display = 'block';
+            cropImage.src  = event.target.result;
+            cropContainer.style.display = "block"; 
+// Destroy previous cropper instance if exists
+if (cropper) {
+  cropper.destroy();
+}
+
+// Initialize Cropper.js
+cropper = new Cropper(cropImage, {
+  aspectRatio: 1, // Square crop
+  viewMode: 2, // Fit within container
+});
+
+
         };
         reader.readAsDataURL(file);
     }
 });
 
-    // Save image to localStorage
-    saveBtn.addEventListener("click", function () {
-      if (preview.src) {
-          localStorage.setItem("profilePic", preview.src);
-          statusMessage.textContent = "Profile picture saved!";
-          statusMessage.style.color = "green";
-      } else {
-          statusMessage.textContent = "Please choose an image first.";
-          statusMessage.style.color = "red";
+
+    // When "Crop & Save" button is clicked
+    cropBtn.addEventListener("click", function () {
+      if (cropper) {
+          // Get cropped image as Base64
+          const croppedCanvas = cropper.getCroppedCanvas({
+              width: 50, // Set size for profile picture
+              height: 50,
+          });
+
+          const base64String = croppedCanvas.toDataURL("image/png");
+
+          // Show preview
+          preview.src = base64String;
+          preview.style.display = "block";
+
+          // Save to localStorage
+          localStorage.setItem("profilePic", base64String);
+          statusMessage.textContent = "Profile picture updated!";
+
+          // Hide cropping area
+          cropContainer.style.display = "none";
       }
   });
+
+
+    // Save image to localStorage
+  //   saveBtn.addEventListener("click", function () {
+  //     if (preview.src) {
+  //         localStorage.setItem("profilePic", preview.src);
+  //         statusMessage.textContent = "Profile picture saved!";
+  //         statusMessage.style.color = "green";
+  //     } else {
+  //         statusMessage.textContent = "Please choose an image first.";
+  //         statusMessage.style.color = "red";
+  //     }
+  // });
+
+   // Remove profile picture
+  document.getElementById("removeBtn").addEventListener("click", function () {
+    localStorage.removeItem("profilePic"); // Remove from storage
+    preview.src = "#"; // Reset preview
+    statusMessage.textContent = "Profile picture removed.";
+    statusMessage.style.color = "red";
+    statusMessage.style.fontWeight = "400";
+    preview.style.display = "none"; // Hide image
+});
+
 
 
 // document.getElementById('viewProfile').addEventListener('click', () => {
