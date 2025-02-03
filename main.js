@@ -380,6 +380,33 @@ cropper = new Cropper(cropImage, {
     preview.style.display = "none"; // Hide image
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const usernameDisplay = document.getElementById("usernameDisplay");
+  const dashboardUsername = document.getElementById("dashboardUsername");
+  const usernameInput = document.getElementById("usernameInput");
+  const saveUsernameBtn = document.getElementById("saveUsername");
+
+  // Load saved username from localStorage (if available)
+  const savedUsername = localStorage.getItem("username");
+  if (savedUsername) {
+      usernameDisplay.textContent = savedUsername;
+      dashboardUsername.textContent = savedUsername;
+      usernameInput.value = savedUsername;
+  }
+
+  // Save new username when button is clicked
+  saveUsernameBtn.addEventListener("click", function () {
+      const newUsername = usernameInput.value.trim();
+      if (newUsername) {
+          localStorage.setItem("username", newUsername);
+          usernameDisplay.textContent = newUsername;
+          dashboardUsername.textContent = newUsername;
+          alert("Username updated successfully!");
+      } else {
+          alert("Username cannot be empty.");
+      }
+  });
+});
 
 
 // document.getElementById('viewProfile').addEventListener('click', () => {

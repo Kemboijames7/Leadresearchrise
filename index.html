@@ -55,8 +55,9 @@
 <!-- Profile Button in Header -->
 <span class="userId">
 <button id="viewProfile" class="profile-btn">👤</button>
-</span>
 
+</span> <br>
+<span id="usernameDisplay" style="font-weight: bold; font-size: 16px; margin-left: 5px;">User</span> 
 <!-- Profile Section (Initially Hidden) -->
 <div id="profileSection" style="display: none;">
     <h2>Update Profile</h2>
@@ -77,7 +78,12 @@
 
     <p id="statusMessage"></p>
     
+<!-- Username Input -->
+<label for="usernameInput">Change Username:</label>
+<input type="text" id="usernameInput" placeholder="Enter new username" />
+<button id="saveUsername">Save</button>
 
+<p id="statusMessage"></p>
 
      <!-- Dashboard Section -->
      <div id="dashboard">
