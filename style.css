@@ -27,7 +27,48 @@ body {
     padding: 0;
 }
 
+/* Mobile devices */
+@media (max-width : 480px) {
+   .navbar{
+    
+        background-color: red;
+        width: 80%;
+        margin: auto; 
+        font-size: 8px;
+      
+    }
+  
 
+    #top-links {
+        flex-grow: 4;
+        flex: block;
+        flex-wrap: nowrap;
+    }
+
+    .hero-section {
+        background-color: #d9ecf8;
+        color: rgb(39, 20, 20);
+        text-align: center;
+    } 
+}
+
+@media (max-width: 1024px) {
+    /* Container adjustments */
+    .container {
+        width: 100%;
+    }}
+
+    @media (max-width: 768px) {
+        /* Container adjustments */
+        .container {
+            width: 60%;
+            padding: 0 5px;
+        }
+        /* Direct element adjustments */
+        .navbar {
+            flex-direction: row;
+        }
+    }
 
 /* Header Styles */
 #header {
@@ -40,8 +81,8 @@ body {
    display: flex;
     align-items: center;
     background-color: #fcf8f8;
-    flex-direction: column;
-  
+    flex-direction: row;
+    padding-top: 20px;
     
 }
 
@@ -152,7 +193,9 @@ h1  {
 }
 
 
-#header  #gtranslate{
+
+
+    #header  #gtranslate{
     position: absolute;
     margin: 0 0 0 5px;
     display: inline-block; 
@@ -162,25 +205,8 @@ h1  {
     border-radius: 0 0 50px 50px;
 
 }
-
-/* .widget_gtranslate a {
-    margin-right: 5px;
-    cursor: pointer;
-    position: relative;
-} */
-.container {
-    justify-content: space-between;
-    width: 100%;
-    border: 3px solid #faf3f3;
-    background-color: rgb(244, 243, 242);
-    display: flex;
-    flex-wrap: wrap;
-}
- 
-/* Navigation */
-
 #header-logo {
-    color: #073238 !important;
+    color: #47584d !important;
     font-weight: bold;
     text-decoration: none;
     display: flex;
@@ -192,6 +218,20 @@ h1  {
     /* background: url(//logo.png) center center no-repeat; */
     /* background-size: contain; */
 }
+
+
+.container {
+    justify-content: space-between;
+    width: 100%;
+    border: 3px solid #faf3f3;
+    background-color: rgb(244, 243, 242);
+    display: flex;
+    flex-wrap: wrap;
+}
+ 
+/* Navigation */
+
+
 
 #header-content ul .nav-menu li a{
     position: relative;
