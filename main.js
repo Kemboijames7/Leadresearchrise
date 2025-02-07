@@ -815,7 +815,7 @@ document.addEventListener('DOMContentLoaded', () => {
   var typed = new Typed('.span__ri', {
       strings: ["First sentence.", "Second sentence."],
       typeSpeed: 50,
-      backSpeed: 50,
+      backSpeed: 40,
       loop: true
   });
 });
