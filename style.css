@@ -29,7 +29,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #666;
-    line-height: 1.6;
+    line-height: 1.6rem;
     padding: 0;
 }
 
@@ -875,6 +875,7 @@ box-shadow: 2px 4px 15px -10px rgba(0, 0, 0, .3);
     background-color: #dadfb9;
     border: rgb(151, 94, 19);
     border-radius: 10px;
+    padding-top: 20px;
 }
 
 /* footer #timeFooter {

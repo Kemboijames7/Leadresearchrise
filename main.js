@@ -589,6 +589,40 @@ forgotPasswordForm.addEventListener('submit', async (event) => {
   }
 });
 
+function rateLimitAction() {
+  let canSend = true; // Prevents repeated sends
+
+  return {
+      sendMessage: function () {
+          return new Promise((resolve, reject) => {
+              if (!canSend) {
+                  reject("Please wait before requesting another code!");
+                  return;
+              }
+
+              canSend = false; // Block further sends
+
+              console.log("Sending verification code..."); // Simulate email sending
+
+              setTimeout(() => {
+                  canSend = true; // Allow sending after 30 seconds
+                  console.log("You can request another code now.");
+              }, 30000); // 30 seconds delay
+
+              resolve("Code sent successfully!");
+          });
+      }
+  };
+}
+
+// Usage Example
+const emailVerification = rateLimitAction();
+
+document.querySelector(".sendCodeBtn").addEventListener("click", () => {
+  emailVerification.sendMessage()
+      .then((message) => alert(message))
+      .catch((error) => alert(error));
+});
 
 
  // Checkbox code
