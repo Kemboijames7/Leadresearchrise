@@ -590,7 +590,7 @@ forgotPasswordForm.addEventListener('submit', async (event) => {
 });
 
 function rateLimitAction() {
-  let canSend = true; // Prevents repeated sends
+  let canSend = true; // Prevents multiple sends
 
   return {
       sendMessage: function () {
@@ -601,28 +601,34 @@ function rateLimitAction() {
               }
 
               canSend = false; // Block further sends
-
-              console.log("Sending verification code..."); // Simulate email sending
+              document.getElementById("forgotSubmitButton").disabled = true; // Disable button
+              document.getElementById("status").textContent = "Sending verification code...";
 
               setTimeout(() => {
                   canSend = true; // Allow sending after 30 seconds
-                  console.log("You can request another code now.");
+                  document.getElementById("forgotSubmitButton").disabled = false; // Re-enable button
+                  document.getElementById("status").textContent = "You can request another code now.";
               }, 30000); // 30 seconds delay
 
-              resolve("Code sent successfully!");
+              resolve("Code sent successfully! Check your email.");
           });
       }
   };
 }
 
-// Usage Example
+// Initialize the rate limiter
 const emailVerification = rateLimitAction();
 
-document.querySelector(".sendCodeBtn").addEventListener("click", () => {
+document.getElementById("forgotSubmitButton").addEventListener("click", () => {
   emailVerification.sendMessage()
-      .then((message) => alert(message))
-      .catch((error) => alert(error));
+      .then((message) => {
+          document.getElementById("status").textContent = message;
+      })
+      .catch((error) => {
+          document.getElementById("status").textContent = error;
+      });
 });
+
 
 
  // Checkbox code
