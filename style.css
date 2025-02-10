@@ -42,9 +42,21 @@ body {
         padding: 5px;
         margin: auto; 
         font-size: 8px;
-      
     }
-  
+
+
+
+
+  .container{
+    
+   word-break: break-all;
+   align-content: center;
+    margin: 0 auto;
+    text-align: center;
+
+
+  }
+
 
 }
 
@@ -784,24 +796,28 @@ box-shadow: 2px 4px 15px -10px rgba(0, 0, 0, .3);
     line-height: 1.5em;
     background-color: #fff;
     border-radius: 30px 30px 30px 30px;
-    overflow: hidden;
-    height: 216px;
-    max-height: 216px;
-    padding-top: 30px;
+    padding-top: 10px;
     padding-right: 20px; 
     padding-bottom: 20px;
     padding-left: 20px;
     margin-right: 20px;
-    margin-bottom: 25px; 
+  
     
 }
 
+
+    
+
 .row-feature {
     display: flex;
-    margin-top: 30px;
+    overflow-x: hidden;
+    padding: 10px;
     justify-content: center;
     align-items: center;
     background-color: #ebe7e4;
+    text-align: center;
+    min-width: 250px;
+
 }
 
 
@@ -926,13 +942,14 @@ section {
     color: #2c2c2c;
     border-radius: 30px 30px 0 0;
     overflow: hidden;
-    padding-top: 100px !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat;
     text-align: center;
    font-weight: bold;
-   margin-bottom: 20px;
+  
 }
 .grid-container {
     display: grid;
