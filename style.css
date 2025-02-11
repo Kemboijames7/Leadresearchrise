@@ -94,6 +94,14 @@ body {
     
 }
 
+#searchBar {
+    position: absolute;
+    min-width: 150px;
+    right: 100px;
+    margin: auto;
+    border-radius: 10px;
+}
+
 .theme-dropdown {
     position: absolute;
     margin: 0 0 0 5px;
@@ -801,7 +809,8 @@ box-shadow: 2px 4px 15px -10px rgba(0, 0, 0, .3);
     padding-bottom: 20px;
     padding-left: 20px;
     margin-right: 20px;
-  
+    margin-top: 10px;
+    overflow-x: hidden;
     
 }
 
@@ -810,6 +819,8 @@ box-shadow: 2px 4px 15px -10px rgba(0, 0, 0, .3);
 
 .row-feature {
     display: flex;
+    margin: auto;
+    max-width: 750px;
     overflow-x: hidden;
     padding: 10px;
     justify-content: center;

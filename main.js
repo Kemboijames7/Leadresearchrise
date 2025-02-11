@@ -1001,3 +1001,19 @@ document.getElementById('chatBot').addEventListener('click', async () => {
       searchResults.innerHTML = results.map((result) => `<p>${result}</p>`).join('');
   });
   
+
+  function handleResize() {
+    let width = window.innerWidth;
+    
+    if (width < 768) {
+        console.log("Mobile View");
+        document.body.style.backgroundColor = "#f4f4f4";
+    } else {
+        console.log("Desktop View");
+        document.body.style.backgroundColor = "#ffffff";
+    }
+    console.log("added")
+}
+
+window.addEventListener("resize", handleResize);
+handleResize(); // Run on page load
