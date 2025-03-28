@@ -5,4 +5,4 @@ This platform streamlines lead management, providing insights to improve sales e
 Leadresearchrise  integrates Stripe and PayPal payment gateways. You can choose either to use Stripe or PayPal for payments. 
 If Stripe isn't available in your country, simply check if PayPal is supported and use it as an alternative for smooth and secure payments.
 
-From the admin dashboard, admins lists the services contacts, countries, locations, parking spots, customers, revenue and payments.
+From the admin dashboard, admins lists the services contacts, countries, locations, social media, email, revenue and payments.
