@@ -679,6 +679,22 @@ box-shadow: 2px 4px 15px -10px rgba(0, 0, 0, .3);
     background-color: #ebe7e4;
 }
 
+ /* pricing */
+
+
+ #pricing .container .row {
+width: 100%;
+display: flex;
+justify-content: space-evenly;
+align-items: center;
+gap: 20px;
+background-color: #ebe7e4;
+ }
+
+ #pricing .container .row .col-md-4 .pricing-item{
+    background-color: #015294;
+}
+
 
 /* Testimonials */
 .testimonials-section {
